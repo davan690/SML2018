@@ -21,67 +21,67 @@ This is a repository to organize the teaching material for [Statistical Machine 
 # Content
 
 - Week 1. Introduction 
-	- Lecture 1 (July 24): ?? 
+	- Lecture 1 (Jul. 24): ?? 
 	- Lab 1 
-	- Lecture 2 (July 25): ??
+	- Lecture 2 (Jul. 25): ??
 	
 - Week 2. ??
-	- Lecture 3 (Mar. 6): ??
+	- Lecture 3 (Jul. 31): ??
 	- Lab 2: ??
-	- Lecture 4 (Mar. 7): ??
+	- Lecture 4 (Aug. 1): ??
 
 - Week 3. ??
-	- Lecture 5 (Mar. 13): ??
+	- Lecture 5 (Aug. 7): ??
 	- Lab 3: ??
-	- Lecture 6 (Mar. 14): ??
+	- Lecture 6 (Aug. 8): ??
 	
 - Week 4. ??
-	- Lecture 7 (Mar. 20): ??
+	- Lecture 7 (Aug. 14): ??
 	- Lab 4: ??
-	- Lecture 8 (Mar. 21): ??
+	- Lecture 8 (Aug. 15): ??
 	
 - Week 5. Clustering
-	- Lecture 9 (Mar. 27): ??
+	- Lecture 9 (Aug. 21): ??
 	- Lab 5: ??
-	- Lecture 10 (Mar. 28): ??
+	- Lecture 10 (Aug. 22): ??
 
 - Semester break		
 		
 - Week 6. ??
-	- Lecture 11 (Apr. 10): ??
+	- Lecture 11 (Aug. 28): ??
 	- Lab 6: ??
-	- Lecture 12 (Apr. 11): ??
+	- Lecture 12 (Aug. 29): ??
 	
 - Week 7. ??
-	- Lecture 13 (Apr. 17): ??
+	- Lecture 13 (Sep. 4): ??
 	- Lab 7: ??
-	- Lecture 14 (Apr. 18):  ??
+	- Lecture 14 (Sep. 5):  ??
 
 	
 - Week 8. ??
-	- Lecture 15 (Apr. 24): ??
+	- Lecture 15 (Sep. 11): ??
 	- Lab 8: ??
-	- Lecture 16 (Apr. 25): ?? 
+	- Lecture 16 (Sep. 12): ?? 
 	
 - Week 9. ??
-	- Lecture 17 (May 1): ??
+	- Lecture 17 (Sep. 18): ??
 	- Lab 9: ??
-	- Lecture 18 (May 2): ?? 
+	- Lecture 18 (Sep. 19): ?? 
 			
 - Week 10.   ??
-	- Lecture 19 (May 8): ??
+	- Lecture 19 (Sep. 25): ??
 	- Lab 10: Advanced regression  ??
-	- Lecture 20 (May 9):  ??
+	- Lecture 20 (Sep. 26):  ??
 	
 - Week 11. ??
-	- Lecture 21 (May 15): ??
+	- Lecture 21 (Oct. 2): ??
 	- Lab 11: ??
-	-  Lecture 22 (May 16): ??
+	-  Lecture 22 (Oct. 3): ??
 	
 - Week 12. Project presentation
-	- Lecture 23 (May 22): Project presentation (I/II)
+	- Lecture 23 (Oct. 9): Project presentation (I/II)
 	- No lab.
-	- Lecture 24 (May 23): Project presentation (II/II)
+	- Lecture 24 (Oct. 10): Project presentation (II/II)
 	
 
 
