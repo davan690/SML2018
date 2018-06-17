@@ -43,9 +43,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 5. Clustering
 	- Lecture 9 (Aug. 21): ??
 	- Lab 5: ??
-	- Lecture 10 (Aug. 22): ??
-
-- Semester break		
+	- Lecture 10 (Aug. 22): ??		
 		
 - Week 6. ??
 	- Lecture 11 (Aug. 28): ??
@@ -67,21 +65,23 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	- Lecture 17 (Sep. 18): ??
 	- Lab 9: ??
 	- Lecture 18 (Sep. 19): ?? 
-			
+
+- Semester break
+
 - Week 10.   ??
-	- Lecture 19 (Sep. 25): ??
+	- Lecture 19 (Oct. 2): ??
 	- Lab 10: Advanced regression  ??
-	- Lecture 20 (Sep. 26):  ??
+	- Lecture 20 (Oct. 3):  ??
 	
 - Week 11. ??
-	- Lecture 21 (Oct. 2): ??
+	- Lecture 21 (Oct. 9): ??
 	- Lab 11: ??
-	-  Lecture 22 (Oct. 3): ??
+	-  Lecture 22 (Oct. 10): ??
 	
 - Week 12. Project presentation
-	- Lecture 23 (Oct. 9): Project presentation (I/II)
+	- Lecture 23 (Oct. 16): Project presentation (I/II)
 	- No lab.
-	- Lecture 24 (Oct. 10): Project presentation (II/II)
+	- Lecture 24 (Oct. 17): Project presentation (II/II)
 	
 
 
