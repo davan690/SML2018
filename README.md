@@ -40,7 +40,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	- Lab 4: ??
 	- Lecture 8 (Aug. 15): ??
 	
-- Week 5. Clustering
+- Week 5. ??
 	- Lecture 9 (Aug. 21): ??
 	- Lab 5: ??
 	- Lecture 10 (Aug. 22): ??		
@@ -70,7 +70,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 - Week 10.   ??
 	- Lecture 19 (Oct. 2): ??
-	- Lab 10: Advanced regression  ??
+	- Lab 10:   ??
 	- Lecture 20 (Oct. 3):  ??
 	
 - Week 11. ??
