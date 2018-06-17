@@ -7,10 +7,10 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 ## Class times
 1. Lectures
- 1. Tuesday 09:00-10:00 at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
- 2. Wednesday 10:00-11:00 at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
+	1. Tuesday 09:00-10:00 at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
+	2. Wednesday 10:00-11:00 at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
 2. Labs
- 1. Tuesday 12:30-14:00 at CL_20 Chancellors Walk, Room E163, Computer Lab 3 (Building 11)
+	1. Tuesday 12:30-14:00 at CL_20 Chancellors Walk, Room E163, Computer Lab 3 (Building 11)
 
 	
 # Consultation hours
