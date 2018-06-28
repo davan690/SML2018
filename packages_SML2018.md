@@ -32,9 +32,10 @@ Our second lab will introduce the fantastic `ggplot2` library for plotting. We w
 * various types of plots (scatter, line, histogram, violin, etc.)
 * controlling aesthetics of a plot
 * adding useful statistics to a plot
-* facetting plots by variables.
+* facetting plots by variables
+* creating animated (`gganimate`) and interactive plots (`plotly`).
 
-This is a lot to cover in two labs, but the main focus here will be to give those that haven't used packages from tidyverse a suitable starting point. As we progress through the semester you will be able to hone your skills with these packages while continuing to learn new material.
+This is a lot to cover in two labs, but the main focus here will be to give those that haven't used packages from tidyverse an adequate starting point. As we progress through the semester you will be able to hone your skills with these packages while continuing to learn new material.
 
 ## Kernel methods
 
