@@ -39,7 +39,16 @@ This is a lot to cover in two labs, but the main focus here will be to give thos
 
 ## Kernel methods
 
-TODO
+__TODO__
+
+Some ideas:
+
+* Have student create their own SVM classifier from scratch? Similar to [this](http://enhancedatascience.com/2018/05/23/create-your-machine-learning-library-from-scratch-with-r-3-5-knn/) series of blog posts (incidentally they have an SVM post coming up next which could prove useful as a reference).
+* Play around with kernel trick?
+* Explore overfitting model selection criteria. See G. C. Cawley and N. L. C. Talbot, Over-fitting in model selection and subsequent selection bias in performance evaluation, Journal of Machine Learning Research, 2010. Research, vol. 11, pp. 2079-2107, July 2010.
+* Use it to do classification on a data set
+* Compare different kernel performance
+* Compare to the existing R packages for SVM classification. Maybe only do a simple SVM implementation from scratch and use existing packages for more complicated experiments? Just in case students can't finish the implementation? Or leave implementation as final exercise?
 
 ## Neural networks
 
@@ -47,12 +56,22 @@ We will be using Keras to fit our neural networks. Keras is a high level deep le
 
 ## Recommender systems/sparse matrices
 
-TODO
+Need more info on class material. The `recosystem` package looks quite promising. An introduction is provided [here](https://cran.r-project.org/web/packages/recosystem/vignettes/introduction.html). It contains bindings for the `LIBMF` C++ library.
 
 ## Text mining
 
-TODO
+We will use the packages:
+
+* `tidytext`
+* `stringr`.
+
+Our focus will be on sentiment analysis, tf-idf and constructing features such as n-grams.
 
 ## Social networks
 
-TODO
+Can use the following packages for network visualisations:
+
+* `ggnet`
+* `igraph`.
+
+Have a look at [this paper](https://journal.r-project.org/archive/2017/RJ-2017-023/RJ-2017-023.pdf) for a discussion of network visualisation using `ggplot2`.
