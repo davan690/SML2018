@@ -28,11 +28,11 @@ Loading, cleaning and tidying data is one of the most important and often overlo
 
 Our second lab will introduce the fantastic `ggplot2` library for plotting. We will look at how to produce useful visualisations such as:
 
-* various types of plots (scatter, line, histogram, violin, etc.)
-* controlling aesthetics of a plot
-* adding useful statistics to a plot
-* facetting plots by variables
-* creating animated (`gganimate`) and interactive plots (`plotly`).
+* Various types of plots (scatter, line, histogram, violin, etc.).
+* Controlling aesthetics of a plot.
+* Adding useful statistics to a plot.
+* Facetting plots by variables.
+* Creating animated (`gganimate`) and interactive plots (`plotly`).
 
 This is a lot to cover in two labs, but the main focus here will be to give those that haven't used packages from tidyverse an adequate starting point. As we progress through the semester you will be able to hone your skills with these packages while continuing to learn new material.
 
