@@ -13,7 +13,6 @@ Week  | Subject
 8-9   | Text mining
 10-11 | Social networks
 
-
 A brief description of each subject is provided below.
 
 ## Tidyverse fundamentals
@@ -65,7 +64,7 @@ We will use the packages:
 * `tidytext`
 * `stringr`.
 
-Our focus will be on sentiment analysis, tf-idf and constructing features such as n-grams.
+Our focus will be on sentiment analysis, tf-idf and constructing features such as n-grams. Maybe look at producing word embeddings using a vector space model. Can do something like a simple word2vec using Keras?
 
 ## Social networks
 
