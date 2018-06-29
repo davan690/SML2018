@@ -6,12 +6,12 @@ Labs will run from weeks 2 to 11 of the semester and cover the following subject
 
 Week  | Subject
 ------|----------------------------------
-1-2   | Tidyverse fundamentals
-3     | Kernel methods
-4-5   | Neural networks
-6-7   | Recommender systems/sparse matrices
-8-9   | Text mining
-10-11 | Social networks
+2-3   | Tidyverse fundamentals
+4     | Kernel methods
+5-6   | Neural networks
+7-8   | Recommender systems/sparse matrices
+9-10  | Text mining
+11    | Social networks
 
 A brief description of each subject is provided below.
 
