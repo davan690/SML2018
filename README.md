@@ -18,6 +18,13 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Souhaib: Tuesday, 10am-11am, Room E759, Menzies Building, Clayton campus
 - Cameron: ??
 
+# Assessment summary
+
+- Exam (60%)
+- Project (20%)
+- 4 assignments (20%, 5% each)
+
+
 # Content
 
 - Week 1. Introduction 
@@ -32,7 +39,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 - Week 3. ??
 	- Lecture 5 (Aug. 7): ??
-	- Lab 3: ??
+	- Lab 3 + assignment 1: ??
 	- Lecture 6 (Aug. 8): ??
 	
 - Week 4. ??
@@ -42,7 +49,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	
 - Week 5. ??
 	- Lecture 9 (Aug. 21): ??
-	- Lab 5: ?? (with Souhaib)
+	- Lab 5 + assignment 2: ?? (with Souhaib)
 	- Lecture 10 (Aug. 22): ??		
 		
 - Week 6. ??
@@ -52,7 +59,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	
 - Week 7. ??
 	- Lecture 13 (Sep. 4): ??
-	- Lab 7: ??
+	- Lab 7 + assignment 3: ??
 	- Lecture 14 (Sep. 5):  ??
 
 	
@@ -63,7 +70,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	
 - Week 9. ??
 	- Lecture 17 (Sep. 18): ??
-	- Lab 9: ??
+	- Lab 9 + assignment 4: ??
 	- Lecture 18 (Sep. 19): ?? 
 
 - Semester break
