@@ -22,7 +22,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 - Week 1. Introduction 
 	- Lecture 1 (Jul. 24): ?? 
-	- Lab 1 
+	- Lab 1: ?? 
 	- Lecture 2 (Jul. 25): ??
 	
 - Week 2. ??
@@ -37,12 +37,12 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	
 - Week 4. ??
 	- Lecture 7 (Aug. 14): ??
-	- Lab 4: ??
+	- Lab 4: ?? (with Souhaib)
 	- Lecture 8 (Aug. 15): ??
 	
 - Week 5. ??
 	- Lecture 9 (Aug. 21): ??
-	- Lab 5: ??
+	- Lab 5: ?? (with Souhaib)
 	- Lecture 10 (Aug. 22): ??		
 		
 - Week 6. ??
