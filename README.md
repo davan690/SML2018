@@ -39,7 +39,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 - Week 3. ??
 	- Lecture 5 (Aug. 7): ??
-	- Lab 3 + assignment 1: ??
+	- Lab 3 + *assignment 1*: ??
 	- Lecture 6 (Aug. 8): ??
 	
 - Week 4. ??
