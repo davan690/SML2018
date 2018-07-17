@@ -1,5 +1,5 @@
 # Statistical Machine Learning
-This is a repository to organize the teaching material for [Statistical Machine Learning (ETC3555)](http://www.monash.edu/pubs/2018handbooks/units/ETC3555.html), to be taught by [Souhaib Ben Taieb](http://www.souhaib-bentaieb.com).
+This is a repository to organize the teaching material for [Statistical Machine Learning (ETC3555)](http://www.monash.edu/pubs/2018handbooks/units/ETC3555.html), to be taught by [Souhaib Ben Taieb](http://www.souhaib-bentaieb.com). [Cameron Roach](https://www.linkedin.com/in/cameron-roach-00873b69/) will supervise the tutorials.
 
 # Course links
 
@@ -7,15 +7,15 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 ## Class times
 1. Lectures
-	1. Tuesday 09am-10am at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
+	1. Tuesday 9am-10am at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
 	2. Wednesday 10am-11am at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
 2. Labs
-	1. Tuesday 12:30-14:00 at CL_20 Chancellors Walk, Room E163, Computer Lab 3 (Building 11)
+	1. Tuesday 12:30-14:00 at CL_20 Chancellors Walk, Room E163, Computer Lab 3 (Bldg 11)
 
 	
 # Consultation hours
 
-- Souhaib: Tuesday, 10am-11am, Room E7??, Menzies Building, Clayton campus
+- Souhaib: Tuesday, 10am-11am, Room E759, Menzies Building, Clayton campus
 - Cameron: ??
 
 # Content
