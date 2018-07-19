@@ -57,7 +57,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 6. Kernel methods
 	- Lecture 11 (Aug. 28): ??
 	- Lecture 12 (Aug. 29): ??
-	- Lab 6: ??
+	- Lab 6: SVM/KERNEL METHODS
 
 	
 - Week 7. Recommender systems and matrix completion
