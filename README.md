@@ -28,68 +28,68 @@ This is a repository to organize the teaching material for [Statistical Machine 
 # Content
 
 - Week 1. Introduction 
-	- Lecture 1 (Jul. 24): ?? 
-	- Lecture 2 (Jul. 25): ??
-	- Lab 1: ?? 
+	- Lecture 1 (Jul. 24): Introduction
+	- Lecture 2 (Jul. 25): The learning problem
+	- Lab 1: Introduction to the R Tidyverse I
 	
-- Week 2. ??
-	- Lecture 3 (Jul. 31): ??
-	- Lecture 4 (Aug. 1): ??
-	- Lab 2: ??
+- Week 2. The learning problem
+	- Lecture 3 (Jul. 31): The learning problem
+	- Lecture 4 (Aug. 1): The learning problem
+	- Lab 2: Introduction to the R Tidyverse II
 
 
-- Week 3. ??
-	- Lecture 5 (Aug. 7): ??
-	- Lecture 6 (Aug. 8): ??
-	- Lab 3 + **assignment 1**: ??
+- Week 3. Neural networks
+	- Lecture 5 (Aug. 7): Neural networks
+	- Lecture 6 (Aug. 8): Neural networks
+	- Lab 3 + **assignment 1**: The learning problem
 	
-- Week 4. ??
-	- Lecture 7 (Aug. 14): ??
-	- Lecture 8 (Aug. 15): ??
-	- Lab 4: ?? (with Souhaib)
+- Week 4. Deep neural networks
+	- Lecture 7 (Aug. 14): Deep neural networks
+	- Lecture 8 (Aug. 15): Deep neural networks
+	- Lab 4: Neural networks (with Souhaib)
 
 	
-- Week 5. ??
+- Week 5. SVM
 	- Lecture 9 (Aug. 21): ??
 	- Lecture 10 (Aug. 22): ??		
-	- Lab 5 + **assignment 2**: ?? (with Souhaib)	
+	- Lab 5 + **assignment 2**: Deep learning (with Souhaib)	
 		
-- Week 6. ??
+- Week 6. Kernel methods
 	- Lecture 11 (Aug. 28): ??
 	- Lecture 12 (Aug. 29): ??
 	- Lab 6: ??
 
 	
-- Week 7. ??
+- Week 7. Recommender systems and matrix completion
 	- Lecture 13 (Sep. 4): ??
 	- Lecture 14 (Sep. 5):  ??
-	- Lab 7 + **assignment 3**: ??
+	- Lab 7 + **assignment 3**: Recommender systems and matrix completion
 
 	
-- Week 8. ??
+- Week 8. Text mining
 	- Lecture 15 (Sep. 11): ??
 	- Lecture 16 (Sep. 12): ?? 
 	- Lab 8: ??
 	
 	
-- Week 9. ??
+- Week 9. Text mining
 	- Lecture 17 (Sep. 18): ??
 	- Lecture 18 (Sep. 19): ?? 
-	- Lab 9 + **assignment 4**: ??
+	- Lab 9 + **assignment 4**: Text mining
 
 
 - Semester break
 
-- Week 10.   ??
+- Week 10. Social networks
 	- Lecture 19 (Oct. 2): ??
 	- Lecture 20 (Oct. 3):  ??
 	- Lab 10:   ??
 	
 	
-- Week 11. ??
+- Week 11. Social networks
 	- Lecture 21 (Oct. 9): ??
 	-  Lecture 22 (Oct. 10): ??
-	- Lab 11: ??
+	- Lab 11 + **assignment 5**: Social networks
 	
 	
 - Week 12. Project presentation
