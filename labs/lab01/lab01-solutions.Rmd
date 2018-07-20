@@ -22,7 +22,7 @@ This lab will focus on working with data. We will cover
 * Creating new variables
 * Fitting models to multiple data sets.
 
-This lab has been designed to reflect a real world scenario where a worker may be required to predict electricity demand for multiple buildings using monthly electricity consumption data.
+This lab has been designed to reflect a real world scenario a data scientit may encounter. You will be required to create models that predict electricity demand for 1000 buildings using (simulated) smart meter data.
 
 Before proceeding, ensure you have the latest version of `R` and RStudio installed on your computer. Install the required packages by running
 
@@ -30,11 +30,15 @@ Before proceeding, ensure you have the latest version of `R` and RStudio install
 install.packages(c("tidyverse", "randomForest"))
 ```
 
+By the end of this lab you should be familiar with the tidyverse family of package and the purpose of each. You will also have a better understanding of how to produce a lot of work with a minimal amount of code.
+
 ## Exercises
 
 ### Exercise 1
 
 Download the raw data files from __TODO__ and write a function to read them into `R`. Reshape the data into a tidy format. If you are unfamiliar with tidy datasets, please refer to Hadley Wickham's paper on the subject (available [here](https://www.jstatsoft.org/article/view/v059i10/v59i10.pdf)).
+
+Once you have a tidy dataset convert the DT column data type from character type to datetime type using the `lubridate` package.
 
 ### Exercise 2
 
@@ -56,7 +60,7 @@ elec_df %>%
 
 ### Exercise 3
 
-We have now seen a simple example that uses `dplyr` and `tidyr` functions. The `dplyr` package is used for summarising and creating new variables. The `tidyr` package is used for reshaping data frames. Use `dplyr`'s `mutate` function to add hour of day and season variables. Should these new variables be nominal, ordinal or numeric? Can you think of any other predictors that may be useful?
+We have now seen some simple examples that uses `dplyr` and `tidyr` functions. The `dplyr` package is used for filtering, summarising and mutating data. The `tidyr` package is used to reshape data frames. Use `dplyr`'s `mutate` function to add hour of day and season variables to your data frame. Should these new variables be nominal, ordinal or numeric? Can you think of any other predictors that may be useful?
 
 ### Exercise 4
 
