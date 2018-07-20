@@ -22,7 +22,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 - Exam (60%)
 - Project (20%)
-- 4 assignments (20%, 5% each)
+- 5 assignments (20%, 4% each)
 
 
 # Content
