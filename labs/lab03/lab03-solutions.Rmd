@@ -1,0 +1,48 @@
+---
+title: "ETC3555 2018 - Lab 3"
+author: "Cameron Roach"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+## Preliminaries
+
+In this lab we will build our own SVM classifier from scratch.
+
+```{r eval=FALSE}
+install.packages("e1701")
+```
+
+## Exercises
+
+### Exercise 1
+
+Build a SVM classifier from scratch in R.
+
+### Exercise 2
+
+Compare your model to the `svm` function from the `e1701` package. Any differences in results? Why?
+
+### Exercise 3
+
+Add a radial basis transformation to your classifier. Compare results again.
+
+### Exercise 4
+
+Convert to a regression model. SVR.
+
+### Exercise 5
+
+Compare your SVR model to your baseline model on electricity data from first lab.
+
+### Exercise 6
+
+Having built your own SVM and SVR functions, what advantages can you see in building a machine learning algorithm from scratch? When would this approach be useful? When should you rely on existing functionality?

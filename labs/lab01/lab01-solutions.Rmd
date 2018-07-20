@@ -1,0 +1,71 @@
+---
+title: "ETC3555 2018 - Lab 1"
+author: "Cameron Roach"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+## Preliminaries
+
+This lab will focus on working with data. We will cover
+
+* Loading data into `R`
+* Reshaping data frames
+* Creating new variables
+* Fitting models to multiple data sets.
+
+This lab has been designed to reflect a real world scenario where a worker may be required to predict electricity demand for multiple buildings using monthly electricity consumption data.
+
+Before proceeding, ensure you have the latest version of `R` and RStudio installed on your computer. Install the required packages by running
+
+```{r eval=FALSE}
+install.packages(c("tidyverse", "randomForest"))
+```
+
+## Exercises
+
+### Exercise 1
+
+Download the raw data files from __TODO__ and write a function to read them into `R`. Reshape the data into a tidy format. If you are unfamiliar with tidy datasets, please refer to Hadley Wickham's paper on the subject (available [here](https://www.jstatsoft.org/article/view/v059i10/v59i10.pdf)).
+
+### Exercise 2
+
+Adjust the below code to visualise monthly electricity demand for several of the buildings. Explain what each line of code does. What does the pipe operator, `%>%` do? How does this differ to the `+` method?
+
+_Note: Plotting with the `ggplot2` package will be explored in detail in Lab 2._
+
+```{r eval = FALSE}
+elec_df %>% 
+  filter(BID %in% sample(BID, 9)) %>%  
+  gather(variable, value, kwh, temperature) %>% 
+  ggplot(elec_df, aes(x = dt, y = kwh, colour = variable)) +
+  geom_line() +
+  facet_wrap(~BID, scales = "free_y") +
+  labs(title = "Temperature and electricity demand.",
+       x = "kWh",
+       y = "Date")
+```
+
+### Exercise 3
+
+We have now seen a simple example that uses `dplyr` and `tidyr` functions. The `dplyr` package is used for summarising and creating new variables. The `tidyr` package is used for reshaping data frames. Use `dplyr`'s `mutate` function to add hour of day and season variables. Should these new variables be nominal, ordinal or numeric? Can you think of any other predictors that may be useful?
+
+### Exercise 4
+
+Use `purrr`'s `nest` and `map` functions to fit separate random forest models to each building and store each model in a new column of the data frame. _Hint: this should only take a few lines of code._
+
+### Exercise 5
+
+Cross validation using `modelr`.
+
+### Exercise 6
+
+Extract CV RMSE scores and add to new column.
