@@ -28,8 +28,8 @@ This is a repository to organize the teaching material for [Statistical Machine 
 # Content
 
 - Week 1. Introduction 
-	- Lecture 1 (Jul. 24): Introduction
-	- Lecture 2 (Jul. 25): The learning problem
+	- Lecture 1 (Jul. 24): Introduction [[slides]](lectures/week1/introduction.pdf)
+	- Lecture 2 (Jul. 25): The learning problem [[slides]](lectures/week1/learning.pdf)
 	- Lab 1: Introduction to the R Tidyverse I
 	
 - Week 2. The learning problem
