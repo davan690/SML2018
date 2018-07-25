@@ -329,7 +329,7 @@ trace_df %>%
   geom_point() + 
   facet_wrap(~building)
 
-# Calculate features for our energy re
+# Calculate features for our energy traces.
 # 
 # Note that this is just one way of approaching the problem - you may 
 # well think of better features to improve separation!
