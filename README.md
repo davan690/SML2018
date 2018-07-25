@@ -10,13 +10,13 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	1. Tuesday 9am-10am at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
 	2. Wednesday 10am-11am at CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11)
 2. Labs
-	1. Wednesday 12:30-14:00 at CL_20 Chancellors Walk, Room E163, Computer Lab 3 (Bldg 11)
+	1. Wednesday 12:30-14:00 at CL_20 Chancellors Walk, Room S317 Computer Lab (Building 11)
 
 	
 # Consultation hours
 
 - Souhaib: Tuesday, 10am-11am, Room E759, Menzies Building, Clayton campus
-- Cameron: Wednesday 9am-10am, Room ?
+- Cameron: Wednesday 9am-10am, Room W11.06, Menzies Building, Clayton campus
 
 # Assessment summary
 
