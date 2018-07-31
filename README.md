@@ -33,8 +33,8 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	- Lab 1: Introduction to the R Tidyverse I
 	
 - Week 2. The learning problem
-	- Lecture 3 (Jul. 31): The learning problem [[slides]](lectures/week1/feasability1.pdf)
-	- Lecture 4 (Aug. 1): The learning problem [[slides]](lectures/week1/feasability2.pdf)
+	- Lecture 3 (Jul. 31): The learning problem [[slides]](lectures/week2/feasability1.pdf)
+	- Lecture 4 (Aug. 1): The learning problem [[slides]](lectures/week2/feasability2.pdf)
 	- Lab 2: Introduction to the R Tidyverse II
 
 
