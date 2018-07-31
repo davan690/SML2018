@@ -1,0 +1,167 @@
+---
+title: "ETC3555 2018 - Lab 2"
+subtitle: "Introduction to ggplot2"
+author: "Cameron Roach"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE,
+	fig.height = 3.5,
+	dev = "png",
+	dpi = 150
+)
+
+rm(list=ls())
+```
+
+## Preliminaries
+
+### Introduction
+
+This lab will focus on producing plots using `R`'s `ggplot2` package. We will cover:
+
+* scatter plots
+* aesthetics
+* useful geoms
+* facetting plots
+* adding smoothers
+* formatting plots.
+
+An online reference is available from [ggplot2.tidyverse.org/reference/](https://ggplot2.tidyverse.org/reference/).
+
+
+### A short tutorial
+
+A typical `ggplot2` function takes the following form:
+
+```{r include = TRUE}
+library(tidyverse)
+
+ggplot(diamonds, aes(x = carat, y = price, colour = clarity)) +
+  geom_point()
+```
+
+The initial `ggplot` call specifies the data frame to be used and the aesthetic mappings. Aesthetic mappings describe how the data will be mapped to various aesthetics in various geoms. Aesthetics typically include properties such as the x-axis variable, y-axis variable, point colours and shapes. However, each geom differs and users should refer to the `R` help files to see what aesthetics are available. If the data and aesthetics are declared inside the `ggplot` function they will be common to every geom that is added. Alternatively, if they are declared inside one of the geoms like so
+
+```{r include = TRUE}
+ggplot() +
+  geom_point(data = diamonds, aes(x = carat, y = price, colour = clarity))
+```
+
+they will only apply to that geom. This can be useful when several data frames are to be used or when different geoms should have different aesthetics (e.g. colour points by clarity, but don't colour a smoother).
+
+We can build up a ggplot object by sequentially adding layers. The following plot combines a simple scatter plot with 2D density contours:
+
+```{r include = TRUE}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, colour = Species)) +
+  geom_point() +
+  geom_density_2d(alpha = 0.3)
+```
+
+
+The contour plot is a bit unclear. We can use facetting to split the plot across several panels. The following code adds the `facet_wrap` function which creates a separate panel for each species.
+
+```{r include = TRUE}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, colour = Species)) +
+  geom_point() +
+  geom_density_2d(alpha = 0.3) +
+  facet_wrap(~Species)
+```
+
+
+## Exercises
+
+### Exercise 1: Scatter plots and aesthetics
+
+Load `tidyverse` and create a scatter plot using the `diamonds` data set. You can type `?diamonds` in the console to access a description of the data. Your scatter plot should have:
+
+* carat on the x-axis
+* price on the y-axis
+* points coloured by diamond colour
+* a smoother for the entire sample (i.e. not coloured by clarity).
+
+You can add a smoother using the `geom_smooth` geom.
+
+
+### Exercise 2: Geoms
+
+#### Line charts
+
+The `geom_line` geom can be used to create connecting lines between observations in the data. Create a line chart using the `economics` data set with:
+
+* date on the x-axis
+* economic variable values on the y-axis
+* lines coloured by economic variable.
+
+Try plotting all variables initially. You will notice that plotting everything at once isn't particularly useful due to the different magnitudes of each economic indicator. We will explore a better way to visualise all the data at once using facetting in a later exercise. For the moment, recreate the plot but with only personal consumption expenditure and unemployment. Do you notice anything interesting in the time series?
+
+
+#### Bar charts
+
+Calculate the duration of each president using the `presidential` data set. Calculate the average presidential term for each party. Create a bar chart that shows the average presidential term in days for each party using the `geom_col` geom.
+
+
+#### Density plots
+
+Use the `geom_density` geom to create density plots for the `diamonds` data set. Set the x-axis to price and the fill to cut quality.
+
+
+#### Box plots
+
+Use the `geom_boxplot` geom to create box plots for the `diamonds` data set. Set the x-axis to diamond colour and the y-axis to price.
+
+
+### Exercise 3: Facetting
+
+The facetting options in `ggplot2` allow us to quickly create separate panels based on a variable. Read the documentation for `facet_wrap` and `facet_grid` and understand when you would use one or the other. Create a facetted plot using the economics data set so that each economic variable is plotted in its own panel. When facetting make sure to:
+
+* use the `scales` argument to ensure each variable has its own y-scale
+* use the `ncol` argument so that only one column of panels is created
+* push the strip position to the right using the `strip.position` argument.
+
+Once you have your plot laid out correctly you can add a vertical line using this geom
+
+```{r eval=FALSE, include=TRUE}
+geom_vline(xintercept = dmy("01/06/2008"), linetype = "dashed", colour = "red")
+```
+
+Make sure you have loaded the `lubridate` package which contains the `dmy` function. The `lubridate` package is part of the tidyverse (although it is not loaded by default) and contains several helper functions when dealing with dates and times. Here, the `dmy` function automatically converts our string to a date object so that the vertical line may be plotted in the correct place.
+
+
+### Exercise 4: Smoothers
+
+We previously saw that you can add a smoother to our plots. Create a scatter plot using the `mpg` data set with engine displacement on the x-axis and highway miles per gallon on the y-axis (type `?mpg` to see a description of the data). Fit four smoothers using `geom_smooth`:
+
+* loess with default values
+* loess with `span` of 0.3
+* a linear smoother
+* a quadratic smoother.
+
+Use the `method` and `formula` arguments to convert the smoothed line to a linear fit with an appropriate formula. Which smoother do you prefer? Can you figure out a way to plot all the smoothed lines at once and include a legend? (Hint: try adding a colour aesthetic to each `geom_smooth`).
+
+
+### Exercise 5: Formatting plots
+
+Some useful functions for formatting plots are:
+
+* `labs` specifies chart titles and axis labels
+* `xlim` and `ylim` changes the plot limits
+* `theme` tweaks the plot layout
+* `theme_bw`, `theme_dark`, etc. are complete themes that override all display settings of a plot.
+
+Use `labs` to add a title, subtitle, caption and better axis labels to the `mpg` plot you created in the previous exercise. Title and subtitle should explain the plot whereas caption should give the data source. Add the `theme_bw` layer to the plot. Finally, use `theme` to move the legend from the default position to the bottom of the plot (hint: use the `legend.position` argument).
+
+If you ever use the `xlim` or `ylim` options be careful. Any values outside the limits will be replaced by NAs in the plot - hence smoothers will be affected. If you wish to apply a smoother to all the data _and then_ zoom in you should use `coord_cartesian`. Take the following plot and limit the x-axis between 325 and 500 using `xlim` and `coord_cartesian`. How does the smoother change? Which method is correct?
+
+```{r include = TRUE}
+p <- ggplot(mtcars, aes(disp, wt)) +
+  geom_point() +
+  geom_smooth()
+
+p
+```
