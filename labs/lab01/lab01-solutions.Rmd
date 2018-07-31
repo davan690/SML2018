@@ -189,7 +189,6 @@ wine_df_stats %>%
   spread(variable, median)
 ```
 
-_Note: this would be better done by visualising density functions for each variable. We will look at this in the next lab._
 
 ### Exercise 7: Fitting multiple models
 
