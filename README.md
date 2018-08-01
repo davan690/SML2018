@@ -30,7 +30,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 1. Introduction 
 	- Lecture 1 (Jul. 24): Introduction [[slides]](lectures/week1/introduction.pdf)
 	- Lecture 2 (Jul. 25): The learning problem [[slides]](lectures/week1/learning.pdf)
-	- Lab 1: Introduction to the R Tidyverse I [[lab 1 (pdf)]](labs/lab01/lab01.pdf) [[lab 1 (Rmd)]](labs/lab01/lab01.Rmd) [[lab 1 solutions (pdf)]](labs/lab01/lab01-solutions.pdf) [[lab 1 solutions (Rmd)]](labs/lab01/lab01-solution.Rmd) 
+	- Lab 1: Introduction to the R Tidyverse I [[lab 1 (pdf)]](labs/lab01/lab01.pdf) [[lab 1 (Rmd)]](labs/lab01/lab01.Rmd) [[lab 1 solutions (pdf)]](labs/lab01/lab01-solutions.pdf) [[lab 1 solutions (Rmd)]](labs/lab01/lab01-solutions.Rmd) 
 
 	
 - Week 2. The learning problem
