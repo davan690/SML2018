@@ -1,0 +1,378 @@
+---
+title: "ETC3555 2018 - Lab 1"
+subtitle: "Introduction to data munging with tidyverse"
+author: "Cameron Roach"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+rm(list=ls())
+```
+
+## Preliminaries
+
+This lab will focus on working with data. We will cover loading, munging, summarising and fitting models to a dataset. Our dataset will contain quality ratings of wine samples and several predictor variables.
+
+The most important package we will be using is `dplyr`. It contains several functions (sometimes referred to as verbs) for manipulating data. Some of the most common verbs and their purpose are
+
+* `select` selects columns
+* `mutate` adds new variables
+* `filter` filters based on a condition
+* `arrange` sorts based on column values
+* `group_by` groups data
+* `summarise` summarise all values within a group.
+
+A handy reference is Hadley Wickham's R for Data Science available at [r4ds.had.co.nz](http://r4ds.had.co.nz/). Excellent cheat sheets can be downloaded from [www.rstudio.com/resources/cheatsheets/](https://www.rstudio.com/resources/cheatsheets/).
+
+## Exercises
+
+### Exercise 1: Loading data
+
+1. Download the red and white wine quality datasets from the UCI Machine Learning Repository ([archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/)). 
+2. Look at these files in a text editor. 
+3. Check the documentation for `read_csv`. 
+4. Select an appropriate function and delimiter to read these files into two separate data frames.
+
+```{r}
+library(tidyverse)
+
+red_df <- read_delim('data/winequality-red.csv', delim = ";")
+white_df <- read_delim('data/winequality-white.csv', delim = ";")
+```
+
+
+The `readr` functions store data in tibbles. Tibbles are an updated type of data frame and have several advantages over base `R` data frames. One such feature is preserving spaces in the column names. Unfortunately, this can cause issues with other `R` packages (e.g. `randomForest`) so we will convert the white space to underscores. Run the following code to remove all white space from column names.
+
+```{r include=TRUE}
+names(red_df) <- str_replace_all(names(red_df), " ", "_")
+names(white_df) <- str_replace_all(names(red_df), " ", "_")
+```
+
+
+### Exercise 2: Adding variables
+
+We can use `dplyr`'s `mutate` function to add variables to our data frames.
+
+1. Add a column to your red and white wine data frames indicating the wine colour.
+2. Bind these data frames into a single data frame using the `bind_rows` function.
+3. Add a Boolean variable that is TRUE if the quality is greater than or equal to 7 (hint: use the `if_else` and `mutate` functions).
+4. Add a unique identifier for each wine sample based on row number (hint: use `row_number`). This will be important when converting the table from long to wide formats.
+
+```{r}
+red_df <- mutate(red_df, wine = "Red")
+white_df <- mutate(white_df, wine = "White")
+wine_df <- bind_rows(red_df, white_df)
+wine_df <- mutate(wine_df, good_quality = if_else(quality >= 7, TRUE, FALSE))
+wine_df <- mutate(wine_df, id = row_number())
+wine_df <- select(wine_df, id, wine, everything())
+wine_df <- na.omit(wine_df)
+```
+
+### Exercise 3: Pipes
+
+The pipe operator, `%>%`, takes the output from a previous operation and adds it as the first argument in the next expression. In other words
+
+```{r include = TRUE, eval=FALSE}
+mutate(red_df, wine = "Red")
+```
+
+is equivalent to
+
+```{r include = TRUE, eval=FALSE}
+red_df %>% mutate(wine = "Red")
+```
+
+This is very useful when carrying out many operations on a data frame. Chaining verbs together leads to easy to read code. Try incorporating pipes into your previous solution. Can you further tidy the code by combining `mutate` functions?
+
+```{r}
+wine_df <- red_df %>% 
+  bind_rows(white_df) %>%
+  mutate(good_quality = if_else(quality >= 7, TRUE, FALSE),
+         id = row_number()) %>% 
+  select(id, wine, everything())
+```
+
+What if we are interested in more than two categories? Say we wish to try and predict if a wine is good, bad or average. We can do this by creating a data frame with our class definitions and then joining it with our original data frame.
+
+1. Create a new data frame with a quality column (numbers 3, 4, ... 9) and quality category column (Bad, Average, Good).
+2. Join this new "quality" data frame with your original wine data frame.
+
+```{r}
+quality_df <- tribble(
+  ~ quality, ~ quality_cat,
+  3, "Bad",
+  4, "Bad",
+  5, "Average",
+  6, "Average",
+  7, "Good",
+  8, "Good",
+  9, "Good"
+)
+
+wine_df <- wine_df %>% 
+  inner_join(quality_df, by = "quality")
+```
+
+### Exercise 4: Filtering and arranging data
+
+We can arrange the data frame and filter based on conditions using the `arrange` and `filter` functions. Filter for red wines only and arrange in decreasing wine quality.
+
+```{r}
+wine_df %>% 
+  filter(wine == "Red") %>% 
+  arrange(desc(quality))
+```
+
+
+We can also check for missing values. Run the following code to see which columns have `NA` values. Don't worry about understanding what's going on here - we'll come back to this in a later exercise.
+
+```{r include = TRUE}
+wine_df %>% 
+  map(~ sum(is.na(.x))) %>% 
+  unlist()
+```
+
+We see that there are two `NA` values in the `total_sulfur_dioxide` column. Use the filter function to remove these rows (hint: use the `is.na` function and `!` logical operator in your condition).
+
+```{r}
+wine_df <- wine_df %>% 
+  filter(!is.na(total_sulfur_dioxide))
+
+wine_df %>% 
+  map(~ sum(is.na(.x))) %>% 
+  unlist()
+```
+
+
+### Exercise 5: Reshaping data
+
+Our dataset is currently in a wide table format. Variables are spread out across the top of our data frame. Convert the data frame into a long table format using the `gather` function from the `tidyr` package.
+
+```{r}
+wine_df_lng <- wine_df %>% 
+  gather(variable, value, -c(id, wine, quality_cat, good_quality))
+
+wine_df_lng
+```
+
+You can undo this using the `spread` function to convert the data frame back to a wide format. Spend some time experimenting with reshaping the data frame.
+
+```{r}
+spread(wine_df_lng, variable, value)
+```
+
+
+### Exercise 6: Summarising data
+
+Now that we have our data in a long table format we can easily calculate statistics for each variable. Use `dplyr`'s `group_by` function to group the data frame by wine colour, variable and quality category. Calculate the median and standard deviation of each variable using the `summarise` function. The `summarise` function reduces all the values in each group to a single value.
+
+```{r}
+wine_df_stats <- wine_df_lng %>% 
+  group_by(wine, quality_cat, variable) %>% 
+  summarise(median = median(value),
+            sd = sd(value))
+
+wine_df_stats
+```
+
+Create a wide table with variables as the key and median as values. Do you notice any obvious differences between good and bad samples?
+
+```{r}
+wine_df_stats %>% 
+  select(-sd) %>% 
+  spread(variable, median)
+```
+
+
+### Exercise 7: Fitting multiple models
+
+Let's fit some models! We will fit separate models to the red and white wine datasets to predict if a wine is good, average or bad. To do this (in a tidy way) we first need to look at the `purrr` package. This package is useful when we want to work with lists. Two important functions we will use are `nest` and `map`. Look at the documentation for these two functions and try to understand what each does.
+
+Now, create a data frame nested by wine type. Then use `map` to fit a decision tree to each. As a starting point, your decision tree should predict the wine quality category based on alcohol, volatile_acidity, citric_acid and sulphates. You'll need to ensure you have the `rpart` library installed and loaded. Once you have successfully fit the decision tree, try adding another column with a random forest fit to the same data.
+
+Hint: here you are trying to add a list column, and so you will `mutate` on your nested data column. However, since a nested column is essentially just a list, we now need to apply our model fitting function to each element within that list (i.e. both the red wine and white wine datasets). Hence, we will need to use `map` within the `mutate` function.
+
+```{r}
+library(rpart)
+library(randomForest)
+
+fit_dt <- function(x) {
+  x <- as_data_frame(x)  # for resample objects
+  
+  rpart(quality_cat ~ alcohol + volatile_acidity + citric_acid + sulphates,
+        data = x)
+}
+
+fit_rf <- function(x) {
+  x <- as_data_frame(x) %>%  # for resample objects
+    mutate(quality_cat = factor(quality_cat, ordered = FALSE))  # randomForest requires factor response for classification
+  
+  randomForest(quality_cat ~ alcohol + volatile_acidity + citric_acid + sulphates,
+               data = x)
+}
+
+fit_df <- wine_df %>%
+  group_by(wine) %>%
+  nest() %>% 
+  mutate(model_dt = map(data, fit_dt),
+         model_rf = map(data, fit_rf))
+```
+
+Apply the following code to your data frame to view the decision trees for red and white wine quality. What does the `walk2` function do? How does it differ to `map`? Is there a `map` equivalent?
+
+```{r include=TRUE, out.width='.49\\linewidth'}
+library(rpart.plot)
+
+plot_dt <- function(tree, title) {
+  rpart.plot(tree, main = title)
+}
+
+walk2(fit_df$model_dt, paste(fit_df$wine, "wine quality decision tree"), plot_dt)
+```
+
+
+Adapt the code above to produce variable importance plots for the two random forest models (hint: use the `varImpPlot` function).
+
+```{r out.width='.49\\linewidth'}
+plot_var_imp <- function(rf, title) {
+  varImpPlot(rf, main = title)
+}
+
+walk2(fit_df$model_rf, paste(fit_df$wine, "wine quality variable importance"), plot_var_imp)
+```
+
+The random forest package automatically creates a confusion matrix when fit. See if you can print the confusion matrices for the red wine and white wine models. You can use the `map` function again.
+
+```{r}
+map(fit_df$model_rf, "confusion")
+```
+
+### Exercise 8: Cross-validation
+
+Look at the `modelr` package located at [github.com/tidyverse/modelr](https://github.com/tidyverse/modelr). Apply cross validation and fit separate models to each training set. Pick a suitable performance metric and compare your decision tree and random forest classifiers. Which performs best on the validation sets? How does the per-class classification error compare with the confusion matrix generated above?
+
+Can you spot a flaw in our approach to model validation?
+
+```{r}
+library(modelr)
+
+# Should have created an out of sample data set and only
+# done CV on the in sample dataset.
+wine_cv_df <- wine_df %>% 
+  group_by(wine) %>% 
+  nest() %>% 
+  mutate(folds = map(data, crossv_kfold, id = "id_cv", k = 3)) %>% 
+  unnest(folds) %>%  # can .drop = FALSE to stop data column being dropped
+  mutate(fit_train_dt = map(train, fit_dt),
+         fit_train_rf = map(train, fit_rf),
+         pred_test_dt = map2(fit_train_dt, test, predict, type = "class"),
+         pred_test_rf = map2(fit_train_rf, test, predict),
+         actual_test = map(test, ~ as_data_frame(.x)$quality_cat))
+
+# Work out per class accuracy
+wine_cv_df %>% 
+  unnest(pred_test_dt, pred_test_rf, actual_test) %>% 
+  select(wine, DT = pred_test_dt, RF = pred_test_rf, actual = actual_test) %>% 
+  gather(model, pred, DT, RF) %>% 
+  mutate(correct = pred == actual) %>% 
+  group_by(wine, model, actual) %>% 
+  summarise(classification_error = (n() - sum(correct))/n()) %>% 
+  spread(model, classification_error)
+```
+
+
+### Exercise 9: Grid search
+
+Now that you understand the fundamentals of working with data, fitting models and carrying out model validation we can look at an even nicer way of approaching the problem. Furthermore - we can also incorporate grid search into our analysis! Look through the documentation for the pipelearner package located at [github.com/drsimonj/pipelearner](https://github.com/drsimonj/pipelearner). Work through the examples in the README of this package. Plot a learning curve.
+
+
+### Exercise 10: A real world example
+
+The UMass Smart dataset hosts electricity usage and weather data sets. Download the apartment electricity usage dataset at [traces.cs.umass.edu/index.php/Smart/Smart](http://traces.cs.umass.edu/index.php/Smart/Smart). This dataset contains electricity consumption data from 114 single family apartments between 2014 and 2016.
+
+Load the 2015 data into your `R` session and filter for the months January, February and March (hint: the `lubridate` package has several useful functions for working with dates and time). Can you find different classes of energy usage behaviour? For example, do some families use significantly more electricity in the evenings? Do others use more in mornings? How might we describe these classes?
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(moments)
+
+# Load data
+read_and_id_csv <- function(file) {
+  read_csv(file, col_names = c("dt", "kw")) %>% 
+    mutate(building = str_extract(file, "Apt[0-9]+"),
+           file = file) %>% 
+    select(building, everything())
+}
+
+trace_df <- list.files(path = "data/apartment/2015",
+                       pattern = ".csv",
+                       full.names = TRUE) %>% 
+  map(read_and_id_csv) %>% 
+  bind_rows() %>% 
+  select(-file) %>%  # only used to check regex correct
+  filter(month(dt) %in% c(1, 2, 3))
+
+# Check some of the data to make sure things look ok
+trace_df %>% 
+  filter(building %in% sample(building, 9)) %>% 
+  group_by(building) %>% 
+  sample_frac(0.1) %>% 
+  ggplot(aes(x = dt, y = kw)) + 
+  geom_point() + 
+  facet_wrap(~building)
+
+# Calculate features for our energy traces.
+# 
+# Note that this is just one way of approaching the problem - you may 
+# well think of better features to improve separation!
+trace_stats_df <- trace_df %>%
+  select(-dt) %>%
+  group_by(building) %>%
+  summarise(mean = mean(kw),
+            sd = sd(kw),
+            skew = skewness(kw),
+            kurtosis = kurtosis(kw),
+            max = max(kw),
+            min = min(kw))
+
+# Apply pca
+trace_pca <- prcomp(scale(trace_stats_df[, -1]))
+
+# K-means on first two PCA components
+trace_kmean <- kmeans(trace_pca$x[,1:2], 5)
+
+# Add PCA and clustering values into trace stats data frame
+cluster_df <- data_frame(
+  building = trace_stats_df$building,
+  pc1 = trace_pca$x[,1],
+  pc2 = trace_pca$x[,2],
+  cluster = factor(trace_kmean$cluster)
+)
+
+# Plot clusters on principal components
+ggplot(cluster_df, aes(x = pc1, y = pc2, colour = cluster)) +
+  geom_point()
+
+# Plot smoothed daily profiles
+cluster_df %>%
+  select(building, cluster) %>% 
+  inner_join(trace_df, by = "building") %>% 
+  mutate(period = hour(dt)*4 + minute(dt)/15) %>% 
+  ggplot(aes(x = period, y = kw, colour = cluster)) +
+  geom_smooth() +
+  ylim(0, NA) +
+  labs(title = "Smoothed profiles for building clusters",
+       caption = "Data: UMass Smart dataset",
+       x = "15-minute period of day",
+       y = "kW")
+
+# It's interesting to look at the actual time series for these clusters. I'll
+# leave that as an exercise...
+```
