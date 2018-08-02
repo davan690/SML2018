@@ -39,23 +39,23 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	- Lab 2: Introduction to the R Tidyverse II [[lab 2 (pdf)]](labs/lab02/lab02.pdf) [[lab 2 (Rmd)]](labs/lab02/lab02.Rmd)
 
 
-- Week 3. Neural networks
-	- Lecture 5 (Aug. 7): Neural networks
-	- Lecture 6 (Aug. 8): Neural networks
+- Week 3.  Linear models
+	- Lecture 5 (Aug. 7): The learning problem
+	- Lecture 6 (Aug. 8): Linear models
 	- Lab 3 + **assignment 1**: The learning problem
 	
-- Week 4. Deep neural networks
-	- Lecture 7 (Aug. 14): Deep neural networks
-	- Lecture 8 (Aug. 15): Deep neural networks
+- Week 4. Neural networks
+	- Lecture 7 (Aug. 14): Neural networks
+	- Lecture 8 (Aug. 15): Neural networks
 	- Lab 4: Neural networks (with Souhaib)
 
 	
-- Week 5. SVM
-	- Lecture 9 (Aug. 21): ??
-	- Lecture 10 (Aug. 22): ??		
+- Week 5. Deep neural networks
+	- Lecture 9 (Aug. 21): Deep neural networks
+	- Lecture 10 (Aug. 22): Deep neural networks	
 	- Lab 5 + **assignment 2**: Deep learning (with Souhaib)	
 		
-- Week 6. Kernel methods
+- Week 6. SVM and Kernel methods
 	- Lecture 11 (Aug. 28): ??
 	- Lecture 12 (Aug. 29): ??
 	- Lab 6: SVM/KERNEL METHODS
