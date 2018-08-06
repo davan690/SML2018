@@ -40,7 +40,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 
 - Week 3.  Linear models
-	- Lecture 5 (Aug. 7): The learning problem
+	- Lecture 5 (Aug. 7): The learning problem [[slides]](lectures/week2/feasability2.pdf)
 	- Lecture 6 (Aug. 8): Linear models
 	- Lab 3 + **assignment 1**: The learning problem
 	
