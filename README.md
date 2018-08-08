@@ -36,13 +36,13 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 2. The learning problem
 	- Lecture 3 (Jul. 31): The learning problem [[slides]](lectures/week2/feasability1.pdf)
 	- Lecture 4 (Aug. 1): The learning problem [[slides]](lectures/week2/feasability2.pdf)
-	- Lab 2: Introduction to the R Tidyverse II [[lab 2 (pdf)]](labs/lab02/lab02.pdf) [[lab 2 (Rmd)]](labs/lab02/lab02.Rmd) [[lab 2 solutions (pdf)]](labs/lab02/lab02-solutions.pdf) [[lab 2 solutions (Rmd)]](labs/lab02/lab02-solutions.Rmd) 
+	- Lab 2: Introduction to the R Tidyverse II [[lab 2 (pdf)]](labs/lab02/lab02.pdf) [[lab 2 (Rmd)]](labs/lab02/lab02.Rmd)
 
 
 - Week 3.  Linear models
 	- Lecture 5 (Aug. 7): The learning problem [[slides]](lectures/week2/feasability2.pdf)
-	- Lecture 6 (Aug. 8): Linear models
-	- Lab 3 + **assignment 1**: The learning problem [[lab 3 (pdf)]](labs/lab03/lab03.pdf) 
+	- Lecture 6 (Aug. 8): Linear models [[slides]](lectures/week3/linear.pdf)
+	- Lab 3 + **assignment 1**: The learning problem
 	
 - Week 4. Neural networks
 	- Lecture 7 (Aug. 14): Neural networks
