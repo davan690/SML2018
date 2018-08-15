@@ -47,7 +47,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 4. Gradient descent
 	- Lecture 7 (Aug. 14): Gradient descent
 	- Lecture 8 (Aug. 15): Stochastic gradient descent
-	- Lab 4: Linear models and gradient descent (with Souhaib)
+	- Lab 4: Linear models and gradient descent (with Souhaib) [[lab 4 (pdf)]](labs/lab04/lab04.pdf)
 
 	
 - Week 5. Neural networks
