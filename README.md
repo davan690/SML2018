@@ -53,7 +53,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 5. Neural networks
 	- Lecture 9 (Aug. 21): Neural networks
 	- Lecture 10 (Aug. 22): Neural networks	
-	- Lab 5 + **assignment 2**: Neural networks (with Souhaib)	
+	- Lab 5 + **assignment 2**: Neural networks (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd)
 		
 - Week 6. Deep neural networks
 	- Lecture 11 (Aug. 28): Deep neural networks
