@@ -45,8 +45,8 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	- Lab 3 + **assignment 1**: The learning problem [[lab 3 (pdf)]](labs/lab03/lab03.pdf)
 	
 - Week 4. Gradient descent
-	- Lecture 7 (Aug. 14): Gradient descent
-	- Lecture 8 (Aug. 15): Stochastic gradient descent
+	- Lecture 7 (Aug. 14): Gradient descent [[slides]](lectures/week4/gradient-descent.pdf)
+	- Lecture 8 (Aug. 15): Stochastic gradient descent [[slides]](lectures/week4/gradient-descent.pdf)
 	- Lab 4: Linear models and gradient descent (with Souhaib) [[lab 4 (pdf)]](labs/lab04/lab04.pdf)
 
 	
