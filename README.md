@@ -55,35 +55,35 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	- Lecture 10 (Aug. 22): Neural networks	
 	- Lab 5 + **assignment 2**: Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd)
 		
-- Week 6. Deep neural networks
-	- Lecture 11 (Aug. 28): Deep neural networks
-	- Lecture 12 (Aug. 29): Deep neural networks
-	- Lab 6: Deep neural networks
+- Week 6. Neural networks
+	- Lecture 11 (Aug. 28): Backpropagation
+	- Lecture 12 (Aug. 29): Backpropagation
+	- Lab 6: Neural networks and backpropagation
 	
-- Week 7. SVM and Kernel methods
-	- Lecture 13 (Sep. 4): ??
-	- Lecture 14 (Sep. 5):  ??
-	- Lab 7 + **assignment 3**: SVM/KERNEL METHODS
+- Week 7. Deep neural networks
+	- Lecture 13 (Sep. 4): Deep neural networks
+	- Lecture 14 (Sep. 5):  Deep neural networks
+	- Lab 7 + **assignment 3**: Deep neural networks
 
 	
-- Week 8. Recommender systems and matrix completion
+- Week 8. SVM and Kernel methods
 	- Lecture 15 (Sep. 11): ??
 	- Lecture 16 (Sep. 12): ?? 
-	- Lab 8: Recommender systems and matrix completion
+	- Lab 8: SVM/KERNEL METHODS
 	
 	
-- Week 9. Text mining
+- Week 9. Recommender systems and matrix completion
 	- Lecture 17 (Sep. 18): ??
 	- Lecture 18 (Sep. 19): ?? 
-	- Lab 9 + **assignment 4**: Text mining
+	- Lab 9 + **assignment 4**: Recommender systems and matrix completion
 
 
 - Semester break
 
-- Week 10. Social networks
+- Week 10.  Text mining
 	- Lecture 19 (Oct. 2): ??
 	- Lecture 20 (Oct. 3):  ??
-	- Lab 10:   ??
+	- Lab 10:   ??  Text mining
 	
 	
 - Week 11. Social networks
