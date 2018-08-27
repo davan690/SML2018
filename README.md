@@ -51,8 +51,8 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 	
 - Week 5. Neural networks
-	- Lecture 9 (Aug. 21): Neural networks
-	- Lecture 10 (Aug. 22): Neural networks	
+	- Lecture 9 (Aug. 21): Neural networks [[slides]](lectures/week5/neural-networks.pdf)
+	- Lecture 10 (Aug. 22): Neural networks	 [[slides]](lectures/week5/neural-networks.pdf)
 	- Lab 5 + **assignment 2**: Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd)
 		
 - Week 6. Neural networks
