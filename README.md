@@ -58,7 +58,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 6. Neural networks
 	- Lecture 11 (Aug. 28): Backpropagation  [[slides]](lectures/week6/neural-networks2.pdf)
 	- Lecture 12 (Aug. 29): Backpropagation  [[slides]](lectures/week6/neural-networks2.pdf)
-	- Lab 6: Neural networks and backpropagation
+	- Lab 6: Neural networks and backpropagation  [[lab 6 (pdf)]](labs/lab06/lab06.pdf) [[lab 6 (Rmd)]](labs/lab06/lab06.Rmd)
 	
 - Week 7. Deep neural networks
 	- Lecture 13 (Sep. 4): Deep neural networks
