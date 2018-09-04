@@ -36,13 +36,13 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 2. The learning problem
 	- Lecture 3 (Jul. 31): The learning problem [[slides]](lectures/week2/feasability1.pdf)
 	- Lecture 4 (Aug. 1): The learning problem [[slides]](lectures/week2/feasability2.pdf)
-	- Lab 2: Introduction to the R Tidyverse II [[lab 2 (pdf)]](labs/lab02/lab02.pdf) [[lab 2 (Rmd)]](labs/lab02/lab02.Rmd) [[lab 2 solutions (pdf)]](labs/lab02/lab02-solutions.pdf) [[lab 2 solutions (Rmd)]](labs/lab02/lab02-solutions.Rmd) 
+	- Lab 2: Introduction to the R Tidyverse II [[lab 2 (pdf)]](labs/lab02/lab02.pdf) [[lab 2 (Rmd)]](labs/lab02/lab02.Rmd)
 
 
 - Week 3.  Linear models
 	- Lecture 5 (Aug. 7): The learning problem [[slides]](lectures/week2/feasability2.pdf)
 	- Lecture 6 (Aug. 8): Linear models [[slides]](lectures/week3/linear.pdf)
-	- Lab 3 + **assignment 1**: The learning problem [[lab 3 (pdf)]](labs/lab03/lab03.pdf)
+	- Lab 3 + **assignment 1** (due Aug. 12): The learning problem [[lab 3 (pdf)]](labs/lab03/lab03.pdf)
 	
 - Week 4. Gradient descent
 	- Lecture 7 (Aug. 14): Gradient descent [[slides]](lectures/week4/gradient-descent.pdf)
@@ -53,17 +53,19 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 5. Neural networks
 	- Lecture 9 (Aug. 21): Neural networks [[slides]](lectures/week5/neural-networks.pdf)
 	- Lecture 10 (Aug. 22): Neural networks	 [[slides]](lectures/week5/neural-networks.pdf)
-	- Lab 5 + **assignment 2**: Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd)
+	- Lab 5 + **assignment 2** (due Aug. 28): Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd)
 		
 - Week 6. Neural networks
-	- Lecture 11 (Aug. 28): Backpropagation
-	- Lecture 12 (Aug. 29): Backpropagation
-	- Lab 6: Neural networks and backpropagation
+	- Lecture 11 (Aug. 28): Backpropagation  [[slides]](lectures/week6/neural-networks2.pdf)
+	- Lecture 12 (Aug. 29): Backpropagation  [[slides]](lectures/week6/neural-networks2.pdf)
+	- Lab 6: Neural networks and backpropagation  [[lab 6 (pdf)]](labs/lab06/lab06.pdf) [[lab 6 (Rmd)]](labs/lab06/lab06.Rmd) [[digits.Rdata]](labs/lab06/digits.Rdata) [[weights.Rdata ]](labs/lab06/weights.Rdata) [[plotDigits.R]](labs/lab06/plotDigits.R)
+
+	
 	
 - Week 7. Deep neural networks
 	- Lecture 13 (Sep. 4): Deep neural networks
 	- Lecture 14 (Sep. 5):  Deep neural networks
-	- Lab 7 + **assignment 3**: Deep neural networks
+	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks
 
 	
 - Week 8. SVM and Kernel methods
