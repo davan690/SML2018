@@ -65,7 +65,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 7. Deep neural networks
 	- Lecture 13 (Sep. 4): Deep neural networks
 	- Lecture 14 (Sep. 5):  Deep neural networks
-	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks
+	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks [[lab 7 (pdf)]](labs/lab07/lab07.pdf) [[lab 7 (Rmd)]](labs/lab07/lab07.Rmd)
 
 	
 - Week 8. SVM and Kernel methods
