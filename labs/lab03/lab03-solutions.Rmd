@@ -1,0 +1,313 @@
+---
+title: "ETC3555 2018 - Lab 3"
+subtitle: "The learning problem and the perceptron algorithm"
+author: "Cameron Roach and Souhaib Ben Taieb"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+
+rm(list=ls())
+
+set.seed(1)
+```
+
+
+## Exercise 1
+
+Solve exercise 1.4 in Learning From Data.
+
+```{r}
+library(tidyverse)
+
+# Because R's sample function is "helpful"
+resample <- function(x, ...) x[sample.int(length(x), ...)]
+
+perceptron <- function(X, y, w) {
+  yhat <- sign(X %*% w)
+  id_missclass <- which(yhat != y)
+  missclass <- length(id_missclass) > 0
+  iter <- 1
+  
+  while(missclass){
+    i <- resample(id_missclass, 1)
+    w <- w + y[i] * X[i,]
+    yhat <- sign(X %*% w)
+    id_missclass <- which(yhat != y)
+    missclass <- length(id_missclass) > 0
+    iter <- iter + 1
+  }
+  
+  a <- -w[2]/w[3]
+  b <- -w[1]/w[3]
+  
+  list(yhat = yhat,
+       w = w,
+       a = a,
+       b = b,
+       iter = iter)
+}
+
+test_perceptron <- function(n, d, w, w_true, verbose = FALSE, X0, y) {
+  a_true <- -w_true[2]/w_true[3]
+  b_true <- -w_true[1]/w_true[3]
+  
+  # generate linearly separable points
+  if (missing(X0)) {
+    X0 <- matrix(runif(d * n, -5, 5), ncol = d)
+    X <- cbind(1, X0)
+    y <- sign(X %*% w_true)
+  } else {
+    X <- cbind(1, X0)
+  }
+  
+  output <- perceptron(X, y, w)
+  
+  if (verbose) {
+    # Plot true boundary and points
+    p <- ggplot() +
+      geom_point(data = data_frame(x1 = X0[,1],
+                                   x2 = X0[,2],
+                                   y = factor(y)),
+                 aes(x = x1, y = x2, colour = y)) +
+      geom_abline(aes(slope = a_true, intercept = b_true, linetype = "Target function")) +
+      geom_abline(aes(slope = output$a, intercept = output$b, linetype = "Final hypothesis")) +
+      labs(title = "PLA applied to linearly separable data.",
+           subtitle = paste("Perceptron took", output$iter, "iterations to converge."),
+           linetype = "Boundary")
+    print(p)
+  }
+  
+  # Add extra properties to output
+  output[["w_true"]] <- w_true
+  output[["a_true"]] <- a_true
+  output[["b_true"]] <- b_true
+  output[["X0"]] <- X0
+  output[["y"]] <- y
+  output
+}
+
+results <- test_perceptron(n = 20,
+                           d = 2,
+                           w = c(1, 1, 1),
+                           w_true = c(-3, 1, 1),
+                           verbose = TRUE)
+```
+
+
+## Assignment - Question 1
+
+Solve exercise 1.10 in Learning From Data.
+
+### 1. (a)
+
+(1 mark) For each fair coin, we have $\mu = 0.5$.
+
+### 1. (b)
+
+(1 mark)
+
+```{r}
+p <- 0.5
+n <- 10
+nb_coins <- 1000
+
+sim_coins <- function(nb_coins, n, p){
+  flips <- matrix(rbinom(nb_coins*n, 1, p), n, nb_coins)
+  
+  data_frame(
+    nu_one = mean(flips[, 1]), 
+    nu_rand = mean(flips[, sample(nb_coins, 1)]), 
+    nu_min = mean(flips[, which.min(apply(flips, 2, sum))])
+  )
+}
+
+res <- rerun(1000, sim_coins(nb_coins, n, p)) %>% 
+  bind_rows()
+
+res %>% 
+  gather(var, val) %>% 
+  ggplot(aes(x = val)) +
+  geom_histogram(bins = 10) +
+  facet_wrap(~var)
+```
+
+### 1. (c)
+
+(1 mark)
+
+```{r}
+calc_hoefdding <- function(epsilon) {
+  res %>%
+    mutate_all(function(x) {abs(x - 0.5) > epsilon }) %>% 
+    summarise_all(mean) %>% 
+    mutate(hoefdding_bound = 2 * exp(-2 * epsilon^2 * n))
+}
+
+allprob_df <- data_frame(epsilon = seq(0, 1, by = 0.01)) %>% 
+  mutate(bounds = map(epsilon, calc_hoefdding)) %>% 
+  unnest()
+
+allprob_df %>% 
+  gather(var, val, -epsilon) %>% 
+  ggplot(aes(x = epsilon, y = val, colour = var)) +
+  geom_line()
+```
+
+### 1. (d)
+
+(1 mark) We see that $c_{min}$ violates the Hoeffding bound because the coin we analyse is not fixed and is chosen after generating the data set. In other words, we allow our hypothesis to change based on the generated data which violates an assumption of the Hoeffding inequality. The Hoefdding inequality holds for $c_{one}$ and $c_{rand}$ as the coins are chosen before data is generated, hence the hypothesis remains fixed.
+
+### 1. (e)
+
+(.5 marks) Consider each coin as a bin and each coin flip as a marble drawn from a bin.
+
+(.5 marks) Selecting our hypothesis from multiple bins is analogous to selecting our hypothesis from multiple coins, as when choosing $c_{min}$. As the Hoeffding bound does not hold for multiple bins, so too does it fail for $c_{min}$.
+
+
+## Assignment - Question 2
+
+Solve problem 1.4 in Learning From Data.
+
+### 2. (a)
+
+(1 mark) See Exercise 1.
+
+### 2. (b), (c), (d), (e), (f) and (g)
+
+(1 mark each, total of 6)
+
+```{r}
+results <- list()
+
+results[["b"]] <- test_perceptron(n = 20,
+                                  d = 2,
+                                  w = c(1, 1, 1),
+                                  w_true = c(-3, 1, 1),
+                                  verbose = TRUE)
+
+results[["c"]] <- test_perceptron(n = 20,
+                                  d = 2,
+                                  w = c(1, 1, 1),
+                                  w_true = c(-3, 1, 1),
+                                  verbose = TRUE)
+
+results[["d"]] <- test_perceptron(n = 100,
+                                  d = 2,
+                                  w = c(1, 1, 1),
+                                  w_true = c(-3, 1, 1),
+                                  verbose = TRUE)
+
+results[["e"]] <- test_perceptron(n = 1000,
+                                  d = 2,
+                                  w = c(1, 1, 1),
+                                  w_true = c(-3, 1, 1),
+                                  verbose = TRUE)
+
+results[["f"]] <- test_perceptron(n = 1000,
+                                  d = 10,
+                                  w = rep(1, 11),
+                                  w_true = c(-3, 1, 1, 2, 1, 3, 2, 3, 1, 1, 2))
+
+results %>% 
+  map("iter") %>% 
+  bind_rows() %>% 
+  gather(Question, Iterations) %>% 
+  ggplot(aes(x = Question, y = Iterations)) +
+  geom_col() +
+  labs(title = "Number of iterations until convergence for questions 2.(b)-(f)")
+
+
+# (g)
+results_rerun <- rerun(100,
+                       test_perceptron(n = 1000,
+                                       d = 10,
+                                       w = rep(1, 11),
+                                       w_true = c(-3, 1, 1, 2, 1, 3, 2, 3, 1, 1, 2),
+                                       X0 = results[["f"]]$X0,
+                                       y = results[["f"]]$y))
+
+results_rerun %>% 
+  map_dbl("iter") %>% 
+  data_frame(Iterations = .) %>% 
+  ggplot(aes(x = Iterations)) +
+  geom_histogram() +
+  labs("Number of iterations until convergence.", 
+       y = "Iterations") +
+  labs(title = "Number of iterations until convergence for question 2.(g)")
+```
+
+
+### 2. (h)
+
+(.5 marks) Either:
+
+1. The classification accuracy doesn't change with respect to $N$ given convergence. PLA always converge to a linear separator with linearly separable data.
+2. Final hypothesis approaches target function as $N$ increases.
+
+(.5 marks) Number of iterations required for convergence increases with $N$ and $d$.
+
+```{r}
+n_sim <- 100
+w <- rep(1, 11)
+w_true <- c(-3, 1, 1, 2, 1, 3, 2, 3, 1, 1, 2)
+
+results_dim <- list(Dimension = 2:10,
+                    Experiment = 1:n_sim) %>% 
+  cross_df() %>% 
+  mutate(Result = map(Dimension,
+                      function(d) { 
+                        test_perceptron(n = 1000,
+                                        d = d,
+                                        w = w[1:(d+1)],
+                                        w_true = w_true[1:(d+1)])
+                      }),
+         Iterations = map_dbl(Result, "iter"))
+
+results_dim %>% 
+  ggplot(aes(x = Dimension, y = Iterations)) +
+  geom_point(shape = "O", alpha = 0.5) +
+  geom_smooth() +
+  labs(title = "Number of iterations until convergence for perceptron",
+       subtitle = "Varying dimensionality",
+       caption = paste("Based on", n_sim, "simulations"))
+
+
+results_samples <- list(Samples = c(20, 100, 250, 500, 750, 1000),
+                        Experiment = 1:n_sim) %>% 
+  cross_df() %>% 
+  mutate(Result = map(Samples,
+                      function(n) { 
+                        test_perceptron(n = n,
+                                        d = 10,
+                                        w = w,
+                                        w_true = w_true)
+                      }),
+         Iterations = map_dbl(Result, "iter"))
+
+
+results_samples %>% 
+  ggplot(aes(x = Samples, y = Iterations)) +
+  geom_point(shape = "O", alpha = 0.5) +
+  geom_smooth() +
+  labs(title = "Number of iterations until convergence for perceptron",
+       subtitle = "Varying number of samples",
+       caption = paste("Based on", n_sim, "simulations"))
+```
+
+\newpage
+
+![Source: Abu-Mostafa et al. Learning from data. AMLbook.](fig/ex1.jpg)
+
+![Source: Abu-Mostafa et al. Learning from data. AMLbook.](fig/img.jpg)
+
+![Source: Abu-Mostafa et al. Learning from data. AMLbook.](fig/bins.jpg)
+
+![Source: Abu-Mostafa et al. Learning from data. AMLbook.](fig/ex2.jpg)
+
