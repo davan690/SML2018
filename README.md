@@ -40,51 +40,52 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 
 - Week 3.  Linear models
-	- Lecture 5 (Aug. 7): The learning problem
-	- Lecture 6 (Aug. 8): Linear models
-	- Lab 3 + **assignment 1**: The learning problem [[lab 3 (pdf)]](labs/lab03/lab03.pdf) 
+	- Lecture 5 (Aug. 7): The learning problem [[slides]](lectures/week2/feasability2.pdf)
+	- Lecture 6 (Aug. 8): Linear models [[slides]](lectures/week3/linear.pdf)
+	- Lab 3 + **assignment 1** (due Aug. 12): The learning problem [[lab 3 (pdf)]](labs/lab03/lab03.pdf) [[lab 3 (Rmd)]](labs/lab03/lab03.Rmd) [[lab 3 solutions (pdf)]](labs/lab03/lab03-solutions.pdf) [[lab 3 solutions (Rmd)]](labs/lab03/lab03-solutions.Rmd) 
 	
-- Week 4. Neural networks
-	- Lecture 7 (Aug. 14): Neural networks
-	- Lecture 8 (Aug. 15): Neural networks
-	- Lab 4: Neural networks (with Souhaib)
+- Week 4. Gradient descent
+	- Lecture 7 (Aug. 14): Gradient descent [[slides]](lectures/week4/gradient-descent.pdf)
+	- Lecture 8 (Aug. 15): Stochastic gradient descent [[slides]](lectures/week4/gradient-descent.pdf)
+	- Lab 4: Linear models and gradient descent (with Souhaib) [[lab 4 (pdf)]](labs/lab04/lab04.pdf)
 
 	
-- Week 5. Deep neural networks
-	- Lecture 9 (Aug. 21): Deep neural networks
-	- Lecture 10 (Aug. 22): Deep neural networks	
-	- Lab 5 + **assignment 2**: Deep learning (with Souhaib)	
+- Week 5. Neural networks
+	- Lecture 9 (Aug. 21): Neural networks [[slides]](lectures/week5/neural-networks.pdf)
+	- Lecture 10 (Aug. 22): Neural networks	 [[slides]](lectures/week5/neural-networks.pdf)
+	- Lab 5 + **assignment 2** (due Aug. 28): Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd)
 		
-- Week 6. SVM and Kernel methods
-	- Lecture 11 (Aug. 28): ??
-	- Lecture 12 (Aug. 29): ??
-	- Lab 6: SVM/KERNEL METHODS
+- Week 6. Neural networks
+	- Lecture 11 (Aug. 28): Backpropagation  [[slides]](lectures/week6/neural-networks2.pdf)
+	- Lecture 12 (Aug. 29): Backpropagation  [[slides]](lectures/week6/neural-networks2.pdf)
+	- Lab 6: Neural networks and backpropagation  [[lab 6 (pdf)]](labs/lab06/lab06.pdf) [[lab 6 (Rmd)]](labs/lab06/lab06.Rmd) [[digits.Rdata]](labs/lab06/digits.Rdata) [[weights.Rdata ]](labs/lab06/weights.Rdata) [[plotDigits.R]](labs/lab06/plotDigits.R)
 
 	
-- Week 7. Recommender systems and matrix completion
-	- Lecture 13 (Sep. 4): ??
-	- Lecture 14 (Sep. 5):  ??
-	- Lab 7 + **assignment 3**: Recommender systems and matrix completion
+	
+- Week 7. Deep neural networks
+	- Lecture 13 (Sep. 4): Deep neural networks
+	- Lecture 14 (Sep. 5):  Deep neural networks
+	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks
 
 	
-- Week 8. Text mining
+- Week 8. SVM and Kernel methods
 	- Lecture 15 (Sep. 11): ??
 	- Lecture 16 (Sep. 12): ?? 
-	- Lab 8: ??
+	- Lab 8: SVM/KERNEL METHODS
 	
 	
-- Week 9. Text mining
+- Week 9. Recommender systems and matrix completion
 	- Lecture 17 (Sep. 18): ??
 	- Lecture 18 (Sep. 19): ?? 
-	- Lab 9 + **assignment 4**: Text mining
+	- Lab 9 + **assignment 4**: Recommender systems and matrix completion
 
 
 - Semester break
 
-- Week 10. Social networks
+- Week 10.  Text mining
 	- Lecture 19 (Oct. 2): ??
 	- Lecture 20 (Oct. 3):  ??
-	- Lab 10:   ??
+	- Lab 10:   ??  Text mining
 	
 	
 - Week 11. Social networks
