@@ -24,6 +24,9 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Project (20%)
 - 5 assignments (20%, 4% each)
 
+# Project
+
+- [Project 2018](project/project.pdf)
 
 # Content
 
