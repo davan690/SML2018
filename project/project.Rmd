@@ -43,11 +43,11 @@ This section presents the learning problem and model you have considered. Some o
 
 - Section 2: Experiment
 
-This section describes the data set you have chosen and the experiment you have performed, including a justification of your choices (evaluation metric, optimization procedure, etc). You should also present your model fitting, diagnostics, etc.
+This section describes the data set you have chosen and the experiment you have performed, including a justification of your choices (evaluation metric, optimization procedure, etc).
 
 - Section 3: Results and Discussion
 
-This includes for example graphs and tables, as well as a discussion of the results.
+This includes for example graphs and tables, as well as a discussion of the results. You should also present your model fitting, diagnostics, etc.
 
 - Section 4: Conclusion
 
