@@ -1,0 +1,51 @@
+---
+title: "ETC3555 2018 - Lab 3"
+subtitle: "The learning problem and the perceptron algorithm"
+author: "Cameron Roach and Souhaib Ben Taieb"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+
+rm(list=ls())
+```
+
+
+### Exercise 1
+
+Solve exercise 1.4 in Learning From Data.
+
+
+### Assignment - Question 1
+
+Solve exercise 1.10 in Learning From Data.
+
+
+
+### Assignment - Question 2
+
+Solve problem 1.4 in Learning From Data.
+
+
+![Source: Abu-Mostafa et al. Learning from data. AMLbook.](fig/ex1.jpg)
+
+![Source: Abu-Mostafa et al. Learning from data. AMLbook.](fig/img.jpg)
+
+![Source: Abu-Mostafa et al. Learning from data. AMLbook.](fig/bins.jpg)
+
+![Source: Abu-Mostafa et al. Learning from data. AMLbook.](fig/ex2.jpg)
+
+
+
+
+## TURN IN 
+
+- Your `.Rmd` file (which should knit without errors and without assuming any packages have been pre-loaded)
+- Your Word (or pdf) file that results from knitting the Rmd.
+- DUE: August 12, 11:55pm (late submissions not allowed), loaded into moodle
