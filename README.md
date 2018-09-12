@@ -81,15 +81,15 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 	
 	
 - Week 7. Deep neural networks
-	- Lecture 13 (Sep. 4): Deep neural networks
-	- Lecture 14 (Sep. 5):  Deep neural networks
+	- Lecture 13 (Sep. 4): Deep neural networks [[slides]](lectures/week6/deep-nets.pdf)
+	- Lecture 14 (Sep. 5):  Deep neural networks [[slides]](lectures/week6/deep-nets.pdf)
 	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks [[lab 7 (pdf)]](labs/lab07/lab07.pdf) [[lab 7 (Rmd)]](labs/lab07/lab07.Rmd)
 
 	
-- Week 8. SVM and Kernel methods
-	- Lecture 15 (Sep. 11): ??
-	- Lecture 16 (Sep. 12): ?? 
-	- Lab 8: SVM/KERNEL METHODS
+- Week 8. Supper Vector Machines (SVM)
+	- Lecture 15 (Sep. 11): Supper Vector Machines [[slides]](lectures/week8/svm.pdf)
+	- Lecture 16 (Sep. 12): Supper Vector Machines [[slides]](lectures/week8/svm.pdf)
+	- Lab 8: SVM [[lab 8 (pdf)]](labs/lab08/lab08.pdf) [[lab 8 (Rmd)]](labs/lab08/lab08.Rmd)
 	
 	
 - Week 9. Recommender systems and matrix completion
