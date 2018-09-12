@@ -32,7 +32,7 @@ Oct 16, Tuesday, 9:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 1
 
 1. 09:00 am - Group 1: PAUL GORDON HENDY and JACK GRAHAM DAVIES 
 2. 09:12 am - Group 2: ELIZAVETA MAKSIMOVNA KOSHENKO and ADYE ROHAN DOUGLAS (**t-SNE**)
-3. 09:24 am - Group 3: JIANXIANG ZHENG and KAMALPREET  SINGH
+3. 09:24 am - Group 3: JIANXIANG ZHENG and KAMALPREET  SINGH (**Convolutional Neural Networks**)
 4. 09:36 am - Group 4: WILLIAM  CHAN and JENNIFER  HE
 
 Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11) 
