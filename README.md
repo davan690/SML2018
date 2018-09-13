@@ -81,8 +81,8 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 	
 	
 - Week 7. Deep neural networks
-	- Lecture 13 (Sep. 4): Deep neural networks [[slides]](lectures/week6/deep-nets.pdf)
-	- Lecture 14 (Sep. 5):  Deep neural networks [[slides]](lectures/week6/deep-nets.pdf)
+	- Lecture 13 (Sep. 4): Deep neural networks [[slides]](lectures/week7/deep-nets.pdf)
+	- Lecture 14 (Sep. 5):  Deep neural networks [[slides]](lectures/week7/deep-nets.pdf)
 	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks [[lab 7 (pdf)]](labs/lab07/lab07.pdf) [[lab 7 (Rmd)]](labs/lab07/lab07.Rmd)
 
 	
