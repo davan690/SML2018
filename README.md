@@ -40,7 +40,7 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 5. 10:00 am - Group 5: XIN QIAN ENG and HONG XIANG  YUE
 6. 10:12 am - Group 6: HAN YANG LIM and MITCHELL RYAN ONG-THOMSON (**Boosting**)
 7. 10:24 am - Group 7: ZEZHENG  ZHANG and JIAYIN TANG (**Recurrent Neural Networks**)
-8. 10:36 am - Group 8: MICHAEL SEN JIE CHAN and BENJAMIN GORMLY CRAINE (**Gaussian mixture methods*)
+8. 10:36 am - Group 8: MICHAEL SEN JIE CHAN and BENJAMIN GORMLY CRAINE (**Gaussian mixture methods**)
 9. 10:48 am - Group 9: JIAYING WU (**Self-organizing map**)
 
 # Content
