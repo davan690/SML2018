@@ -71,7 +71,7 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 - Week 5. Neural networks
 	- Lecture 9 (Aug. 21): Neural networks [[slides]](lectures/week5/neural-networks.pdf)
 	- Lecture 10 (Aug. 22): Neural networks	 [[slides]](lectures/week5/neural-networks.pdf)
-	- Lab 5 + **assignment 2** (due Aug. 28): Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd)
+	- Lab 5 + **assignment 2** (due Aug. 28): Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd) [[lab 5 solutions (pdf)]](labs/lab05/lab05-solutions.pdf) [[lab 5 solutions (Rmd)]](labs/lab05/lab05-solutions.Rmd) 
 		
 - Week 6. Neural networks
 	- Lecture 11 (Aug. 28): Backpropagation  [[slides]](lectures/week6/neural-networks2.pdf)
