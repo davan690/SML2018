@@ -93,9 +93,15 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 	
 	
 - Week 9. Recommender systems and matrix completion
-	- Lecture 17 (Sep. 18): ??
-	- Lecture 18 (Sep. 19): ?? 
+	- Lecture 17 (Sep. 18): See videos below
+	- Lecture 18 (Sep. 19): See videos below
 	- Lab 9 + **assignment 4**: Recommender systems and matrix completion [[lab 9 (zip)]](labs/lab09/lab09.zip)
+	- Lecture 16.1 — Recommender Systems | Problem Formulation — [ Machine Learning | Andrew Ng ]: https://www.youtube.com/watch?v=giIXNoiqO_U
+	- Lecture 16.2 — Recommender Systems | Content Based Recommendations — [ Andrew Ng ]: https://www.youtube.com/watch?v=9siFuMMHNIA
+	- Lecture 16.3 — Recommender Systems | Collaborative Filtering — [ Machine Learning | Andrew Ng ]: https://www.youtube.com/watch?v=9AP-DgFBNP4
+	- Lecture 16.4 — Recommender Systems | Collaborative Filtering Algorithm — [ Andrew Ng ]: https://www.youtube.com/watch?v=YW2b8La2ICo
+	- Lecture 16.5 — Recommender Systems | Vectorization Low Rank Matrix Factorization — [ Andrew Ng ]: https://www.youtube.com/watch?v=5R1xOJOFRzs
+	- Lecture 16.6 — Recommender Systems | Implementational Detail Mean Normalization — [ Andrew Ng ]: https://www.youtube.com/watch?v=Am9fhp2Q91o
 
 
 - Semester break
