@@ -28,6 +28,21 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 - [Project 2018](project/project.pdf)
 
+Oct 16, Tuesday, 9:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11) 
+
+1. 09:00 am - Group 1: PAUL GORDON HENDY and JACK GRAHAM DAVIES  (**Reinforcement learning**)
+2. 09:12 am - Group 2: ELIZAVETA MAKSIMOVNA KOSHENKO and ADYE ROHAN DOUGLAS (**t-SNE**)
+3. 09:24 am - Group 3: JIANXIANG ZHENG and KAMALPREET  SINGH (**Convolutional Neural Networks**)
+4. 09:36 am - Group 4: WILLIAM  CHAN and JENNIFER  HE (**DBSCAN**)
+
+Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bldg 11) 
+
+5. 10:00 am - Group 5: XIN QIAN ENG and HONG XIANG  YUE
+6. 10:12 am - Group 6: HAN YANG LIM and MITCHELL RYAN ONG-THOMSON (**Boosting**)
+7. 10:24 am - Group 7: ZEZHENG  ZHANG and JIAYIN TANG (**Recurrent Neural Networks**)
+8. 10:36 am - Group 8: MICHAEL SEN JIE CHAN and BENJAMIN GORMLY CRAINE (**Gaussian mixture methods**)
+9. 10:48 am - Group 9: JIAYING WU (**Self-organizing map**)
+
 # Content
 
 - Week 1. Introduction 
@@ -56,7 +71,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 - Week 5. Neural networks
 	- Lecture 9 (Aug. 21): Neural networks [[slides]](lectures/week5/neural-networks.pdf)
 	- Lecture 10 (Aug. 22): Neural networks	 [[slides]](lectures/week5/neural-networks.pdf)
-	- Lab 5 + **assignment 2** (due Aug. 28): Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd)
+	- Lab 5 + **assignment 2** (due Aug. 28): Linear models and gradient descent (with Souhaib)	[[lab 5 (pdf)]](labs/lab05/lab05.pdf) [[lab 5 (Rmd)]](labs/lab05/lab05nofig.Rmd) [[lab 5 solutions (pdf)]](labs/lab05/lab05-solutions.pdf) [[lab 5 solutions (Rmd)]](labs/lab05/lab05-solutions.Rmd) 
 		
 - Week 6. Neural networks
 	- Lecture 11 (Aug. 28): Backpropagation  [[slides]](lectures/week6/neural-networks2.pdf)
@@ -66,15 +81,15 @@ This is a repository to organize the teaching material for [Statistical Machine 
 	
 	
 - Week 7. Deep neural networks
-	- Lecture 13 (Sep. 4): Deep neural networks
-	- Lecture 14 (Sep. 5):  Deep neural networks
+	- Lecture 13 (Sep. 4): Deep neural networks [[slides]](lectures/week7/deep-nets.pdf)
+	- Lecture 14 (Sep. 5):  Deep neural networks [[slides]](lectures/week7/deep-nets.pdf)
 	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks [[lab 7 (pdf)]](labs/lab07/lab07.pdf) [[lab 7 (Rmd)]](labs/lab07/lab07.Rmd)
 
 	
-- Week 8. SVM and Kernel methods
-	- Lecture 15 (Sep. 11): ??
-	- Lecture 16 (Sep. 12): ?? 
-	- Lab 8: SVM/KERNEL METHODS
+- Week 8. Supper Vector Machines (SVM)
+	- Lecture 15 (Sep. 11): Supper Vector Machines [[slides]](lectures/week8/svm.pdf)
+	- Lecture 16 (Sep. 12): Supper Vector Machines [[slides]](lectures/week8/svm.pdf)
+	- Lab 8: SVM [[lab 8 (pdf)]](labs/lab08/lab08.pdf) [[lab 8 (Rmd)]](labs/lab08/lab08.Rmd)
 	
 	
 - Week 9. Recommender systems and matrix completion
