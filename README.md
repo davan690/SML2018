@@ -95,7 +95,7 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 - Week 9. Recommender systems and matrix completion
 	- Lecture 17 (Sep. 18): ??
 	- Lecture 18 (Sep. 19): ?? 
-	- Lab 9 + **assignment 4**: Recommender systems and matrix completion
+	- Lab 9 + **assignment 4**: Recommender systems and matrix completion [[lab 9 (zip)]](labs/lab09/lab09.zip)
 
 
 - Semester break
