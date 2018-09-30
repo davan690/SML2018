@@ -12,6 +12,11 @@ This is a repository to organize the teaching material for [Statistical Machine 
 2. Labs
 	1. Wednesday 12:30-14:00 at CL_20 Chancellors Walk, Room S317 Computer Lab (Building 11)
 
+# Consultation hours (EXAM)
+
+- Souhaib: Friday, 26 October, 10am-12pm, Room E759, Menzies Building, Clayton campus
+- Cameron: ??, ??, ??, Room W11.06, Menzies Building, Clayton campus
+
 	
 # Consultation hours
 
@@ -107,15 +112,15 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 - Semester break
 
 - Week 10.  Text mining
-	- Lecture 19 (Oct. 2): ??
-	- Lecture 20 (Oct. 3):  ??
-	- Lab 10:   ??  Text mining
+	- Lecture 19 (Oct. 2): Text mining
+	- Lecture 20 (Oct. 3):  Text mining
+	- Lab 10:  Text mining
 	
 	
 - Week 11. Social networks
-	- Lecture 21 (Oct. 9): ??
-	-  Lecture 22 (Oct. 10): ??
-	- Lab 11 + **assignment 5**: Social networks
+	- Lecture 21 (Oct. 9): Text mining
+	-  Lecture 22 (Oct. 10): Revision
+	- Lab 11 + **assignment 5**: Text mining
 	
 	
 - Week 12. Project presentation
