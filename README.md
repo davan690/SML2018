@@ -14,8 +14,8 @@ This is a repository to organize the teaching material for [Statistical Machine 
 
 # Consultation hours (EXAM)
 
-- Souhaib: Friday, 26 October, 10am-12pm, Room E759, Menzies Building, Clayton campus
-- Cameron: ??, ??, ??, Room W11.06, Menzies Building, Clayton campus
+- Souhaib: Friday, 26 October, 3pm-5pm, Room E759, Menzies Building, Clayton campus
+- Cameron: Monday, 22 October, 1àam-11:30am, Room W11.06, Menzies Building, Clayton campus
 
 	
 # Consultation hours
