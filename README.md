@@ -112,9 +112,9 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 - Semester break
 
 - Week 10. Text mining
-	- Lecture 19 (Oct. 2): Text mining
-	- Lecture 20 (Oct. 3):  Text mining
-	- Lab 10:  Text mining
+	- Lecture 19 (Oct. 2): Text mining  [[slides]](lectures/week10/textmining.pdf)
+	- Lecture 20 (Oct. 3): Text mining [[slides]](lectures/week10/textmining.pdf)
+	- Lab 10:  Text mining [[lab 10 (pdf)]](labs/lab10/lab10.pdf) 
 	
 	
 - Week 11. Text mining
