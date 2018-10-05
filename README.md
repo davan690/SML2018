@@ -15,7 +15,7 @@ This is a repository to organize the teaching material for [Statistical Machine 
 # Consultation hours (EXAM)
 
 - Souhaib: Friday, 26 October, 3pm-5pm, Room E759, Menzies Building, Clayton campus
-- Cameron: Monday, 22 October, 1àam-11:30am, Room W11.06, Menzies Building, Clayton campus
+- Cameron: Monday, 22 October, 10am-11:30am, Room W11.06, Menzies Building, Clayton campus
 
 	
 # Consultation hours
@@ -88,7 +88,7 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 - Week 7. Deep neural networks
 	- Lecture 13 (Sep. 4): Deep neural networks [[slides]](lectures/week7/deep-nets.pdf)
 	- Lecture 14 (Sep. 5):  Deep neural networks [[slides]](lectures/week7/deep-nets.pdf)
-	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks [[lab 7 (pdf)]](labs/lab07/lab07.pdf) [[lab 7 (Rmd)]](labs/lab07/lab07.Rmd)
+	- Lab 7 + **assignment 3** (due Sep. 16): Deep neural networks [[lab 7 (pdf)]](labs/lab07/lab07.pdf) [[lab 7 (Rmd)]](labs/lab07/lab07.Rmd) [[lab 7 solutions (pdf)]](labs/lab07/lab07-solutions.pdf) [[lab 7 solutions (Rmd)]](labs/lab07/lab07-solutions.Rmd) 
 
 	
 - Week 8. Supper Vector Machines (SVM)
