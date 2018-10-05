@@ -1,0 +1,395 @@
+---
+title: "ETC3555 2018 - Lab 7"
+subtitle: "Deep neural networks"
+author: "Cameron Roach and Souhaib Ben Taieb"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+rm(list=ls())
+```
+
+
+# Preliminaries
+
+We will be working with the Keras framework to implement our deep neural network (DNN). Keras is a front end for several DNN frameworks (e.g. TensorFlow, Theano, etc.) which aims to simplify the coding process. Install Keras for `R` by running:
+
+```{r echo = TRUE, include = TRUE, eval = FALSE}
+install.packages("keras")
+library(keras)
+install_keras(method = c("conda"), conda = "auto", tensorflow = "default",
+              extra_packages = c("tensorflow-hub"))
+```
+
+TensorFlow should automatically be installed and selected as the default backend.
+
+If at any stage you need to retrain your models from scratch make sure to clear your workspace and refresh your R session. Failing to do so will result in continued training of existing models or unexpected errors.
+
+# Exercises
+
+## Exercise 1
+
+Work through the introduction to Keras tutorial on the RStudio blog located at [https://keras.rstudio.com/](https://keras.rstudio.com/). This walk-through will have you implement a feed-forward neural network with:
+
+1. 256 node hidden layer with relu activation function
+2. dropout layer with 0.4 dropout rate
+3. 128 node hidden layer with relu activation function
+4. dropout layer with 0.3 dropout rate
+5. fully connected (dense) output layer with softmax output.
+
+After completing the tutorial answer the following questions:
+
+a) Why would you use softmax on the output layer and relu on the input?
+b) Why different dropout rates (is there any benefit in varying them)?
+c) Is the loss lower on the validation set than the training set for early epochs? Does this agree with your intuition? What happens when you remove the dropout layers and retrain? Explain why.
+d) Once you figure out (c), can you justify the design choice?
+e) Does the training accuracy and validation accuracy cross? Why? If not, why?
+
+## Assignment - Question 1
+
+a) Create another DNN as above, but with half as many units in each hidden layer. Assess the performance of this model against your previous model.
+b) Now try L1 or L2 regularization with dropout layers removed.
+c) Create another model without dropout or regularization and implement early stopping based on the validation loss. Is the loss improved? Is the accuracy improved? How do the three models compare? Produce a plot comparing both the loss and accuracy of each model.
+
+## Assignment - Question 2
+
+Create a new network with the following structure:
+
+1. $d^{(1)}$ node hidden layer with relu activation function
+2. dropout layer with $q$ dropout rate
+3. fully connected (dense) output layer with softmax output.
+
+Use grid search to select optimal $d^{(1)} \in \left\{ 16, 32, 64, 128 \right\}$ and $q \in \left\{ 0, 0.25, 0.5, 0.75 \right\}$ values. Create a heatmap or similar showing the loss for each combination of hyperparameter values. Which combination gives the best performance? Comment on the suitability of this grid of values.
+
+## Assignment - Question 3
+
+Using your optimal hyperparameters from the previous question, try refitting the network using:
+
+* Momentum
+* ADAM
+* RMSProp.
+
+Comment on how each affects the model accuracy on the test set. Which converges fastest?
+
+
+# Solutions
+
+## Exercise 1
+
+(a) Softmax converts to a probability. Relu is just an efficient way to introduce non-linearities into the neural network model. It tends to outperform other activation functions.
+(b) Maybe - what did you find?
+(c) From [FAQ](https://keras.io/getting-started/faq/#why-is-the-training-loss-much-higher-than-the-testing-loss):
+
+>> Why is the training loss much higher than the testing loss?
+
+>> A Keras model has two modes: training and testing. Regularization mechanisms, such as Dropout and L1/L2 weight regularization, are turned off at testing time.
+
+>> Besides, the training loss is the average of the losses over each batch of training data. Because your model is changing over time, the loss over the first batches of an epoch is generally higher than over the last batches. On the other hand, the testing loss for an epoch is computed using the model as it is at the end of the epoch, resulting in a lower loss.
+
+(d) Dropout is useful when training as a form of regularization. You don't want to apply dropout during the final predictions as it will decrease accuracy.
+(e) Overfitting.
+
+
+## Assignment - Question 1
+
+(3 marks)
+
+```{r}
+library(tidyverse)
+theme_set(theme_bw())
+library(keras)
+library(rsample)
+
+n_epochs <- 20
+
+mnist <- dataset_mnist()
+
+x_train <- mnist$train$x
+y_train <- mnist$train$y
+x_test <- mnist$test$x
+y_test <- mnist$test$y
+
+# reshape
+dim(x_train) <- c(nrow(x_train), 784)
+dim(x_test) <- c(nrow(x_test), 784)
+
+
+# rescale
+x_train <- x_train / 255
+x_test <- x_test / 255
+
+y_train <- to_categorical(y_train, 10)
+y_test <- to_categorical(y_test, 10)
+
+
+# Initialise list
+model_list <- list()
+
+# Exercise 1
+model_list[["Tutorial"]]$model <- keras_model_sequential() %>%
+  layer_dense(units = 256, activation = "relu", input_shape = c(784)) %>%
+  layer_dropout(rate = 0.4) %>%
+  layer_dense(units = 128, activation = "relu") %>%
+  layer_dropout(rate = 0.3) %>%
+  layer_dense(units = 10, activation = "softmax") %>%
+  compile(loss = "categorical_crossentropy",
+          optimizer = optimizer_rmsprop(),
+          metrics = c("accuracy"))
+
+model_list[["Tutorial"]]$fit <- model_list[["Tutorial"]]$model %>%
+  fit(x_train, y_train, epochs = n_epochs, batch_size = 128,
+      validation_split = 0.2)
+
+# Assignment question 1 (a)
+model_list[["Dropout"]]$model <- keras_model_sequential() %>%
+  layer_dense(units = 128, activation = "relu", input_shape = c(784)) %>%
+  layer_dropout(rate = 0.4) %>%
+  layer_dense(units = 64, activation = "relu") %>%
+  layer_dropout(rate = 0.3) %>%
+  layer_dense(units = 10, activation = "softmax") %>%
+  compile(loss = "categorical_crossentropy",
+          optimizer = optimizer_rmsprop(),
+          metrics = c("accuracy"))
+
+model_list[["Dropout"]]$fit <- model_list[["Dropout"]]$model %>%
+  fit(x_train, y_train, epochs = n_epochs, batch_size = 128,
+      validation_split = 0.2)
+
+# Assignment question 1 (b)
+model_list[["L1"]]$model <- keras_model_sequential() %>%
+  layer_dense(units = 128, activation = "relu", input_shape = c(784),
+              kernel_regularizer = regularizer_l1(1e-4)) %>%
+  layer_dense(units = 64, activation = "relu",
+              kernel_regularizer = regularizer_l1(1e-4)) %>%
+  layer_dense(units = 10, activation = "softmax") %>%
+  compile(loss = "categorical_crossentropy",
+          optimizer = optimizer_rmsprop(),
+          metrics = c("accuracy"))
+
+model_list[["L1"]]$fit <- model_list[["L1"]]$model %>%
+  fit(x_train, y_train, epochs = n_epochs, batch_size = 128,
+      validation_split = 0.2)
+
+# Assignment question 1 (c)
+model_list[["Early stopping"]]$model <- keras_model_sequential() %>%
+  layer_dense(units = 128, activation = "relu", input_shape = c(784)) %>%
+  layer_dense(units = 64, activation = "relu") %>%
+  layer_dense(units = 10, activation = "softmax") %>%
+  compile(loss = "categorical_crossentropy",
+          optimizer = optimizer_rmsprop(),
+          metrics = c("accuracy"))
+
+model_list[["Early stopping"]]$fit <- model_list[["Early stopping"]]$model %>%
+  fit(x_train, y_train, epochs = n_epochs, batch_size = 128,
+      validation_split = 0.2,
+      callbacks = callback_early_stopping(monitor = 'val_loss',
+                                          patience = 2))
+
+
+# Evaluate models
+evaluate_df <- function(model) {
+  evaluate(model, x_test, y_test, verbose = 0) %>%
+    bind_rows()
+}
+
+# convert list to data frame for easier processing
+model_df <- data_frame(
+  name = fct_inorder(names(model_list)), # use factor for plot order
+  model = map(model_list, "model"),  # pull out model element
+  fit = map(model_list, "fit")  # pull out fit element
+) %>%
+  mutate(eval = map(model, evaluate_df)) %>%
+  unnest(eval)
+
+k_clear_session()
+
+# Plots - alternative commented out below
+# walk2(model_df$fit, model_df$name,
+#       function(fit, name) {
+#         # plot method for keras_training_history object returns ggplot object
+#         p <- plot(fit) +
+#           ggtitle(name)
+#         print(p)
+#       })
+
+model_df %>%
+  mutate(metrics = map(fit, function(x) { data.frame(x) })) %>%
+  select(name, metrics) %>%
+  unnest(metrics) %>%
+  ggplot(aes(x = epoch, y = value, colour = data)) +
+  geom_line() +
+  facet_grid(metric~name, scales = "free_y")
+
+model_df %>%
+  select(name, loss, acc) %>% 
+  knitr::kable(caption = "Loss and accuracy for Keras models")
+
+model_df %>%
+  select(name, loss, acc) %>%
+  gather(var, val, -name) %>%
+  ggplot(aes(x = name, y = val)) +
+  geom_col(colour = "blue", fill = "blue", alpha = 0.3, width = 0) +
+  geom_point(colour = "blue") +
+  facet_wrap(~var, scales = "free_x") +
+  coord_flip()
+```
+
+## Assignment - Question 2
+
+(4 marks)
+
+```{r}
+# Adapted from https://tidymodels.github.io/rsample/articles/Applications/Keras.html
+
+#### Helper functions ---------------------------------------------------------
+
+evaluate_split <- function(units, dropout_rate, split, ...) {
+  cat("Fitting: split = ", split$id[[1]], "; units = ", units, "; dropout = ",
+      dropout_rate, "\n", sep = "")
+  set.seed(4109)
+  on.exit(keras::backend()$clear_session())
+
+  # Define a single layer NN with dropout
+  model <- keras_model_sequential() %>%
+    layer_dense(units = units, activation = "relu", input_shape = c(784)) %>%
+    layer_dropout(rate = dropout_rate) %>%
+    layer_dense(units = 10, activation = "softmax") %>%
+    compile(loss = "categorical_crossentropy",
+            optimizer = optimizer_rmsprop(),
+            metrics = c("accuracy"))
+
+  # The data used for modeling (aka the "analysis" set)
+  # Note: need to convert back to matrices for keras
+  x_train_split <- analysis(split) %>%
+    select(starts_with("X")) %>%
+    as.matrix()
+  
+  y_train_split <- analysis(split) %>%
+    select(starts_with("Y")) %>%
+    as.matrix()
+
+  # Fit to training (analysis) set
+  fit(model, x = x_train_split, y = y_train_split, ...)
+
+  # Now obtain the holdout set for evaluation
+  x_test_split <- assessment(split) %>%
+    select(starts_with("X")) %>%
+    as.matrix()
+  
+  y_test_split <- assessment(split) %>%
+    select(starts_with("Y")) %>%
+    as.matrix()
+  
+  evaluate(model, x_test_split, y_test_split, verbose = 0)$loss
+}
+
+
+across_grid <- function(split, grid_df, ...) {
+  # Execute grid for this resample
+  grid_df$loss <- pmap_dbl(
+    grid_df,
+    evaluate_split,
+    split = split,
+    ...  # extra options for `fit`
+  )
+
+  grid_df$id <- split$id[[1]]
+  
+  grid_df
+}
+
+
+#### Training -----------------------------------------------------------------
+
+# Convert matrices to dataframes for easier (and quicker) resampling. Need to 
+# be a bit fancy because y is a matrix of values (not just a single response).
+x_train_df <- as_data_frame(x_train)
+names(x_train_df) <- paste0("X", 1:ncol(x_train_df))
+y_train_df <- as_data_frame(y_train)
+names(y_train_df) <- paste0("Y", 1:ncol(y_train_df))
+mnist_train <- bind_cols(x_train_df, y_train_df)
+
+# 5-fold cross validation
+cv_splits <- vfold_cv(mnist_train, v = 5)
+
+# Create grid
+grid_df <- list(units = c(16, 32, 64, 128, 256, 512, 1024, 2048),
+                dropout_rate = c(0, .25, .5, .75)) %>%
+  cross_df()
+
+# Fit model to each fold and hyperparameter combination
+if (file.exists("cache/tune_results.RData")) {
+  load("cache/tune_results.RData")
+} else {
+  tune_results <- map_df(
+    cv_splits$splits,
+    across_grid,
+    grid_df = grid_df,
+    batch_size = 128,
+    epochs = n_epochs,
+    verbose = 0,
+    view_metrics = 0
+  )
+  
+  dir.create("cache", F, T)
+  
+  save(tune_results, file = "cache/tune_results.RData")
+}
+
+plot_heatmap <- function(df) {
+  ggplot(df, aes(x = units, y = dropout_rate)) + 
+    geom_tile(aes(fill = loss)) +
+    geom_tile(aes(colour = optimal, size = optimal), fill = NA) +
+    geom_text(aes(label = round(loss, 2)), colour = "white") +
+    scale_x_log10(breaks = unique(grid_df$units)) +
+    scale_fill_gradient(high = "#132B43", low = "#56B1F7") +
+    scale_size_manual("optimal", values=c(0, 1)) + 
+    scale_colour_manual("optimal", values = c(NA, "darkorange1")) +
+    labs(title = "Grid search for optimal dropout rate and number of units",
+         subtitle = "Based on 5-fold cross validation")
+}
+```
+
+We can see that the optimal performance using 5-fold cross validation on our training set occurs at the boundary of our subset of the hyperparameter space. If we increase the size of our hyperparameter space we observe a better combination of values.
+
+```{r}
+# Check average performance for units given in question
+tune_results %>% 
+  filter(units %in% c(16, 32, 64, 128)) %>% 
+  group_by(units, dropout_rate) %>% 
+  summarise(loss = mean(loss)) %>% 
+  ungroup() %>% 
+  mutate(optimal = loss == min(loss)) %>% 
+  plot_heatmap()
+```
+
+```{r}
+# Check average performance for more units
+tune_results %>% 
+  group_by(units, dropout_rate) %>% 
+  summarise(loss = mean(loss)) %>% 
+  ungroup() %>% 
+  mutate(optimal = loss == min(loss)) %>% 
+  plot_heatmap()
+```
+
+
+## Assignment - Question 3
+
+(3 marks)
+
+This is just a matter of updating the `optimizer` argument in `compile`. For example:
+
+```{r echo = TRUE, include = TRUE, eval = FALSE}
+compile(loss = "categorical_crossentropy",
+        optimizer = optimizer_sgd(momentum = 0.3),
+        metrics = c("accuracy"))
+```
+
+You'll likely see that momentum is fastest, but doesn't reach the same accuracy. To reach same accuracy it could run for more epochs, but then might not be the fastest anymore. RMSProp and ADAM reach a given accuracy (say 95%) in fewer epochs. You can use `system.time()` or `microbenchmark` from the `microbenchmark` package to time how long each takes.
