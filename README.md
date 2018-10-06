@@ -120,7 +120,7 @@ Oct 17, Wednesday, 10:00am, CL_20 Chancellors Walk, Room E365, East Level 3 (Bld
 - Week 11. Text mining
 	- Lecture 21 (Oct. 9): Text mining
 	-  Lecture 22 (Oct. 10): Revision
-	- Lab 11 + **assignment 5**: Text mining
+	- Lab 11 + **assignment 5**: Text mining [[lab 11 (pdf)]](labs/lab11/lab11.pdf) [[lab 11 (Rmd)]](labs/lab11/lab11.Rmd) 
 	
 	
 - Week 12. Project presentation
