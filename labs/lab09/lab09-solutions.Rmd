@@ -1,0 +1,309 @@
+---
+title: "ETC3555 2018 - Lab 9 solutions"
+subtitle: "Recommender Systems"
+author: "Cameron Roach and Souhaib Ben Taieb"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+rm(list=ls())
+```
+
+In this assignment, you will implement the collaborative filtering learning algorithm and apply it to a dataset of movie ratings. This dataset consists of ratings on a scale of 1 to 5. The dataset has $n_u = 943$ users, and $n_m = 1682$ movies.
+
+```{r echo = TRUE}
+load("movies_ratings.Rda")
+list2env(data,.GlobalEnv) # "Y" and "R"
+rm(data)
+
+#  Y is a 1682x943 matrix, containing ratings (1-5) of 1682 movies on 
+#  943 users
+#
+#  R is a 1682x943 matrix, where R[i,j] <- 1 if and only if user j gave a
+#  rating to movie i
+```
+
+The following code gives all movies titles.
+
+```{r echo = TRUE}
+source("loadMovieList.R")
+movieList <- loadMovieList()
+```
+
+(1 mark) Compute the average ratings for "Toy Story (1995)" and "Alaska (1996)".
+
+```{r echo = TRUE}
+# ----------------------- YOUR CODE HERE -----------------------
+library(tidyverse)
+
+ifelse(R, Y, NA) %>% 
+  t() %>% 
+  magrittr::set_colnames(movieList) %>% 
+  as_data_frame() %>% 
+  select("Toy Story (1995)", "Alaska (1996)") %>% 
+  summarise_all(funs(mean(., na.rm=TRUE)))
+# --------------------------------------------------------------
+```
+
+(1 mark) Which user has rated more movies? Plot a histogram of her/his ratings?
+
+```{r echo = TRUE}
+# ----------------------- YOUR CODE HERE -----------------------
+id_more <- which.max(apply(R, 2, sum))
+id_reviewed <- which(R[, id_more] == 1)
+print(id_more)
+print(length(Y[id_reviewed, id_more]))
+hist(Y[id_reviewed, id_more], .5+0:5)
+# --------------------------------------------------------------
+```
+
+
+You will now implement the cost function for collaborative filtering. Specifically, you should complete the following code to return J. 
+
+```{r echo = TRUE}
+cofiCostFunc <- function(Y, R, num_users, num_movies,
+                         num_features, lambda = 0) {
+  #COFICOSTFUNC Collaborative filtering cost function
+  #   J <- COFICOSTFUNC(Y, R, num_users, num_movies, ...
+  #   num_features, lambda)(params) returns the cost for the
+  #   collaborative filtering problem.
+  #
+  # Notes: X - num_movies  x num_features matrix of movie features
+  #        Theta - num_users  x num_features matrix of user features
+  #        Y - num_movies x num_users matrix of user ratings of movies
+  #        R - num_movies x num_users matrix, where R(i, j) <- 1 if the
+  #            i-th movie was rated by the j-th user
+    
+  function(params) {
+    # Unfold the U and W matrices from params
+    X <-
+      matrix(params[1:(num_movies * num_features)], num_movies, num_features)
+    Theta <-
+      matrix(params[(num_movies * num_features + 1):length(params)],num_users, num_features)
+    
+  
+    # ----------------------- YOUR CODE HERE -----------------------
+    J <- 0
+    J <- (1 / 2) * sum(((X %*% t(Theta)) * R - Y * R) ^ 2) +
+      (lambda / 2 * sum(Theta ^ 2)) + (lambda / 2 * sum(X ^ 2))
+    # --------------------------------------------------------------
+    J
+  }
+}
+```
+
+To help you debug your cost function, run the following code.
+
+```{r echo = TRUE}
+#  Load pre-trained weights (X, Theta, num.users, num.movies, num.features)
+load("movieParams.Rda")
+list2env(data,.GlobalEnv)
+rm(data)
+
+num_users <- as.numeric(num.users)
+num_movies <- as.numeric(num.movies)
+num_features <- as.numeric(num.features)
+
+#  Reduce the data set size so that this runs faster
+num_users <- 4; num_movies <- 5; num_features <- 3
+X <- X[1:num_movies, 1:num_features]
+Theta <- Theta[1:num_users, 1:num_features]
+Y <- Y[1:num_movies, 1:num_users]
+R <- R[1:num_movies, 1:num_users]
+
+#  Evaluate cost function
+J <- cofiCostFunc(Y, R, num_users, num_movies, num_features, 0)(c(c(X),c(Theta)))
+           
+cat(sprintf('Cost at loaded parameters: %f  (this value should be about 22.22)\n', J))
+```
+
+Once your cost function matches up with ours, you should now implement the collaborative filtering gradient function. Specifically, you should complete the following code to return the grad argument.
+
+```{r echo = TRUE}
+cofiGradFunc <- function(Y, R, num_users, num_movies, num_features, lambda = 0) {
+  #cofiGradFunc returns the gradient for the
+  #   collaborative filtering problem.
+  # Notes: X - num_movies  x num_features matrix of movie features
+  #        Theta - num_users  x num_features matrix of user features
+  #        Y - num_movies x num_users matrix of user ratings of movies
+  #        R - num_movies x num_users matrix, where R[i, j] <- 1 if the
+  #            i-th movie was rated by the j-th user
+  #
+  function(params) {
+    # Unfold the U and W matrices from params
+    X <-
+      matrix(params[1:(num_movies * num_features)], num_movies, num_features)
+    Theta <-
+      matrix(params[(num_movies * num_features + 1):length(params)],
+             num_users, num_features)
+    
+    
+    # You should set the following variables correctly:
+    #        X_grad - num_movies x num_features matrix, containing the
+    #                 partial derivatives w.r.t. to each element of X
+    #        Theta_grad - num_users x num_features matrix, containing the
+    #                     partial derivatives w.r.t. to each element of Theta
+    #
+    
+    # ----------------------- YOUR CODE HERE -----------------------
+    X_grad <- matrix(0,dim(X)[1],dim(X)[2])
+    Theta_grad <- matrix(0, dim(Theta)[1], dim(Theta)[2])
+    
+    X_grad <- (((X %*% t(Theta)) * R) %*% Theta - (Y * R) %*% Theta) + lambda * X
+    Theta_grad <- t((t(X) %*% ((X %*% t(Theta)) * R) - t(X) %*% (Y * R))) + lambda * Theta
+    # --------------------------------------------------------------
+    grad <- c(c(X_grad),c(Theta_grad))
+    grad
+  }
+}
+```
+
+You can check your function by running the following code.
+
+```{r echo = TRUE}
+source("computeNumericalGradient.R")
+source("checkCostFunction.R")
+checkCostFunction()
+```
+
+(3 marks) Now, you should implement regularization for the cost function for collaborative filtering. Update the code of the *cofiCostFunc* function.
+
+You can check your function using the following code.
+
+```{r echo = TRUE}
+lambda <- 1.5
+J <- cofiCostFunc(Y, R, num_users, num_movies, num_features, lambda)(c(c(X),c(Theta)))
+           
+cat(sprintf('Cost at loaded parameters (lambda = 1.5): %f (this value should be about 31.34)\n', J))
+```
+
+(3 marks) Once your cost matches up with ours, you should proceed to implement regularization for the gradient. Update the code of the *cofiGradFunc* function.
+
+You can check the gradient computations with the following code.
+
+```{r echo = TRUE}
+checkCostFunction(lambda)
+```
+
+Before training the collaborative filtering model, we will first add ratings that correspond to a new user that we just observed. This part of the code will allow you to put in your own ratings for the movies in our dataset!
+
+```{r echo = TRUE}
+#  Initialize my ratings
+my_ratings <- rep(0,1682)
+
+# Check the file movie_ids.txt for id of each movie in our dataset
+# For example, Toy Story (1995) has ID 1, so to rate it "4", you can set
+my_ratings[1] <- 4
+
+# Or suppose did not enjoy Silence of the Lambs (1991), you can set
+my_ratings[98] <- 2
+
+# We have selected a few movies we liked / did not like and the ratings we
+# gave are as follows:
+my_ratings[7] <- 3
+my_ratings[12]<- 5
+my_ratings[54] <- 4
+my_ratings[64]<- 5
+my_ratings[66]<- 3
+my_ratings[69] <- 5
+my_ratings[183] <- 4
+my_ratings[226] <- 5
+my_ratings[355]<- 5
+
+cat(sprintf('\n\nNew user ratings:\n'))
+
+for (i in 1:length(my_ratings))
+    if (my_ratings[i] > 0 )
+        cat(sprintf('Rated %d for %s\n', my_ratings[i], movieList[i]))
+```
+
+
+Now we will train the collaborative filtering model.
+
+```{r echo = TRUE}
+load("movies_ratings.Rda")
+list2env(data,.GlobalEnv) # "Y" and "R"
+rm(data)
+
+#  Add our own ratings to the data matrix
+
+Y <- cbind(my_ratings, Y)
+R <- cbind((my_ratings != 0), R)
+
+#  Normalize Ratings
+source("normalizeRatings.R")
+NR  <- normalizeRatings(Y, R)
+Ynorm <- NR$Ynorm
+Ymean <- NR$Ymean
+#  Useful Values
+num_users <- dim(Y)[2]
+num_movies <- dim(Y)[1]
+num_features <- 10
+
+# Set Initial Parameters (Theta, X)
+n <- num_movies * num_features
+X <- matrix(rnorm(n), num_movies, num_features)
+
+n <- num_users * num_features
+Theta <-  matrix(rnorm(n), num_users, num_features)
+
+initial_parameters <- c(c(X), c(Theta))
+
+# Set Regularization
+lambda <- 10
+
+cF <- cofiCostFunc(Ynorm, R, num_users, num_movies,num_features, lambda)
+gF <- cofiGradFunc(Ynorm, R, num_users, num_movies,num_features, lambda)
+
+#install.packages("lbfgsb3")
+library(lbfgsb3)
+source("lbfgsb3_.R")
+theta <- lbfgsb3_(initial_parameters, fn= cF, gr=gF, control = list(trace=1,maxit=100))$prm
+
+# The following code works but optim is slow on this problem
+# theta <- optim(initial_parameters, fn = cF, gr = gF,
+       #method = "BFGS", control = list(maxit=10, trace=1, REPORT=1) )$par
+
+# Unfold the returned theta back into U and W
+X <- matrix(theta[1:(num_movies*num_features)], num_movies, num_features)
+Theta <- matrix(theta[(num_movies*num_features+1):length(theta)], num_users, num_features)
+
+cat(sprintf('Recommender system learning completed.\n'))
+```
+
+(2 marks) After training the model, you have now computed X and Theta. Use them to compute the top 10 recommendations for the new user. Print the movie titles and the associated ratings.
+
+```{r echo = TRUE}
+# ----------------------- YOUR CODE HERE -----------------------
+p <- X %*% t(Theta)
+my_predictions <- p[,1] + Ymean
+
+movieList <- loadMovieList()
+
+ix <- sort(my_predictions, decreasing = TRUE,index.return=TRUE)$ix
+
+cat(sprintf('\nTop recommendations for you:\n'))
+for (i in 1:10){
+    j <- ix[i]
+    cat(sprintf('Predicting rating %.1f for movie %s\n', my_predictions[j],movieList[j]))
+}
+
+cat(sprintf('\n\nOriginal ratings provided:\n'))
+for (i in 1:length(my_ratings))
+    if (my_ratings[i] > 0 )
+        cat(sprintf('Rated %d for %s\n', my_ratings[i],movieList[i]))
+# --------------------------------------------------------------
+```
+
+
+# TURN IN 
+
+- Your `.Rmd` file (which should knit without errors and without assuming any packages have been pre-loaded)
+- Your Word (or pdf) file that results from knitting the Rmd.
+- DUE: October 2, 11:55pm (late submissions not allowed), loaded into moodle.

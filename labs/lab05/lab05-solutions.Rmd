@@ -1,0 +1,310 @@
+---
+title: "ETC3555 2018 - Lab 5"
+author: "Cameron Roach and Souhaib Ben Taieb"
+date: "17 August 2018"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+subtitle: Linear models and gradient descent (II/II)
+# header-includes:
+#    - \usepackage[linesnumbered,lined,commentsnumbered]{algorithm2e}
+header-includes:
+   - \usepackage[plain]{algorithm2e} 
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'h')
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+
+rm(list=ls())
+```
+
+
+# Solutions
+
+14 marks total.
+
+## Assignment - Question 1
+
+### 1. (a)
+
+(2 marks)
+
+Assume $\left\{ \left(\mathbf{x}_n, y_n \right) \right\}_{n=1}^N$ is linearly separable and $y_n \in \left\{ -1, +1\right\} \ \forall \ n$. For an incorrectly classified point, $y_n \mathbf{w}^T\mathbf{x}_n<0 \Rightarrow e_n \left(\mathbf{w} \right) = -y_n \mathbf{w}^T\mathbf{x}_n$ and $\nabla e_n \left(\mathbf{w} \right) = -y_n \mathbf{x}_n$. If a point is correctly classified then $y_n \mathbf{w}^T\mathbf{x}_n>0 \Rightarrow e_n \left(\mathbf{w} \right) = \nabla e_n \left(\mathbf{w} \right) = 0$.
+
+Applying SGD with this error measure gives Algorithm \ref{alg:q1a_sgd}.
+
+\begin{algorithm}[H]
+ \KwData{$\left\{ \left(\mathbf{x}_n, y_n \right) \right\}_{n=1}^N$}
+ \KwResult{final weights: $\mathbf{w} (t+1)$}
+ initialise weights at $t=0$ to $\mathbf{w} \left( 0 \right)$\;
+ \For{$t = 0, 1, 2, \ldots$}{
+  select a training point $\left(\mathbf{x}_n, y_n \right)$ uniformly at random\;
+  compute the gradient of the error for this single data point, $\mathbf{g}_t=\nabla e_n \left(\mathbf{w} \left( t \right) \right)$\;
+  set the direction to move, $\mathbf{v}_t = -\mathbf{g}_t$\;
+  update the weights: $\mathbf{w} (t + 1) = \mathbf{w} (t) + \eta \mathbf{v}_t$\;
+  iterate until $e_n \left(\mathbf{w} (t + 1) \right) = 0 \  \forall \ \left(\mathbf{x}_n, y_n \right)$\;
+  }
+ \caption{SGD on $e_n \left( \mathbf{w} \right)$}
+ \label{alg:q1a_sgd}
+\end{algorithm}
+
+If $\left(\mathbf{x}_n, y_n \right)$ is correctly classified the gradient will equal zero and no change to the weights will occur. Alternatively, if $\left(\mathbf{x}_n, y_n \right)$ is an incorrectly classified point the gradient will be $\mathbf{g}_t=\nabla e_n \left(\mathbf{w} \left( t \right) \right) = -y_n \mathbf{x}_n$. We can restrict our selection of points at each iteration to those that are misclassified because correctly classified points will not affect weights. Substituting $\mathbf{v}_t = y_n \mathbf{x}_n$, choosing a learning rate $\eta = 1$ and noting that $e_n \left(\mathbf{w} \right) = 0$ only when $y_n \mathbf{w}^T\mathbf{x}_n>0$, we see that this is equivalent to the PLA (see Algorithm \ref{alg:q1a_pla}).
+
+\begin{algorithm}[H]
+ \KwData{$\left\{ \left(\mathbf{x}_n, y_n \right) \right\}_{n=1}^N$}
+ \KwResult{final weights: $\mathbf{w} (t+1)$}
+ initialise weights at $t=0$ to $\mathbf{w} \left( 0 \right)$ \;
+ \For{$t = 0, 1, 2, \ldots$}{
+  select a misclassified training point $\left(\mathbf{x}_n, y_n \right)$ uniformly at random\;
+  update the weights: $\mathbf{w} (t + 1) = \mathbf{w} (t) + y_n \mathbf{x}_n$\;
+  iterate until $y_n \mathbf{w}^T (t+ 1) \mathbf{x}_n>0 \ \forall \ n$\;
+  }
+ \caption{PLA}
+ \label{alg:q1a_pla}
+\end{algorithm}
+
+
+### 1. (b)
+
+(2 marks)
+
+Let $\mathbf{w}$ be a non-zero vector. If a point is misclassified then $y_n \mathbf{w}^T x_n < 0$ and
+
+$$
+\nabla e_n(\mathbf{w}) = \frac{-y_n \mathbf{x}_n}{1+e^{y_n \mathbf{w}^T \mathbf{x}_n}} 
+\xrightarrow{\| \mathbf{w} \| \rightarrow \infty} -y_n \mathbf{x}_n.
+$$
+
+Alternatively, if a point is correctly classified then $y_n \mathbf{w}^T x_n > 0$ and
+
+$$
+\nabla e_n(\mathbf{w}) = \frac{-y_n \mathbf{x}_n}{1+e^{y_n \mathbf{w}^T \mathbf{x}_n}}
+\xrightarrow{\| \mathbf{w} \| \rightarrow \infty} 0.
+$$
+
+So for large $\mathbf{w}$ we can use the above limits as gradient approximations. The result follows in the same manner as for part (a).
+
+
+## Assignment - Question 2
+
+### 2. (a)
+
+(2 marks)
+
+The error function can be expressed as
+
+$$
+e_n( \mathbf{w} ) = \left\{
+\begin{array}{lr}
+  0 & \text{ if } y_n \mathbf{w}^T \mathbf{x}_n \geq 1, \\
+  (1-y_n \mathbf{w}^T \mathbf{x}_n)^2 & \text{ if } y_n \mathbf{w}^T \mathbf{x}_n < 1.
+  \end{array}
+\right.
+$$
+
+This function is plotted below.
+
+```{r e_n_plot, fig.cap="$e_n(\\mathbf{w})$ for $y\\in \\left\\{ 1, -1 \\right\\}$ and $\\mathbf{x}_n = 1$.", fig.height=3}
+library(tidyverse)
+
+data_frame(
+  y = c(rep(1, 41), rep(-1, 41)),
+  x = rep(1, 82),
+  w = rep(seq(-2, 2, 0.1), 2)
+) %>% 
+  mutate(e_n = if_else(y*w*x >= 1, 0, (1-y*w*x)^2)) %>% 
+  ggplot(aes(x = w, y = e_n, colour = factor(y))) +
+  geom_line()
+```
+
+
+
+When $y_n \mathbf{w}^T \mathbf{x}_n < 1$ the error function $e_n( \mathbf{w} )$ is continuous with respect to $\mathbf{w}$ as it is a polynomial function which are continuous (and differentiable) everywhere. Alternatively, when $y_n \mathbf{w}^T \mathbf{x}_n \geq 1$ the error function $e_n( \mathbf{w} )$ is again continuous with respect to $\mathbf{w}$ as it is a constant function which are continuous (and differentiable) everywhere. Taking the limits from above and below at $y_n \mathbf{w}^T \mathbf{x}_n = 1$ we see that
+
+$$
+\begin{gathered}
+\lim_{y_n \mathbf{w}^T \mathbf{x}_n \rightarrow 1^+} e_n( \mathbf{w} ) = \lim_{y_n \mathbf{w}^T \mathbf{x}_n \rightarrow 1^+} (1-y_n \mathbf{w}^T \mathbf{x}_n)^2 = 0, \\
+\lim_{y_n \mathbf{w}^T \mathbf{x}_n \rightarrow 1^-} e_n( \mathbf{w} ) = \lim_{y_n \mathbf{w}^T \mathbf{x}_n \rightarrow 1^-} 0 = 0,
+\end{gathered}
+$$
+
+and so $e_n( \mathbf{w} )$ is continuous here as well. We can conclude that $e_n( \mathbf{w} )$ is a continuous function. It is also differentiable at $y_n \mathbf{w}^T \mathbf{x}_n = 1$, because the left hand derivative and right hand derivative are both equal to zero.
+
+The deriviative is
+
+$$
+\nabla e_n( \mathbf{w} ) = \left\{
+\begin{array}{lr}
+  0 & \text{ if } y_n \mathbf{w}^T \mathbf{x}_n \geq 1, \\
+  -2y_n \mathbf{x}_n (1-y_n \mathbf{w}^T \mathbf{x}_n) & \text{ if } y_n \mathbf{w}^T \mathbf{x}_n < 1,
+  \end{array}
+\right.
+$$
+
+where we have used the chain rule to obtain the second line.
+
+
+### 2. (b)
+
+(2 marks)
+
+When $\text{sign}(\mathbf{w}^T\mathbf{x}_n) \neq y_n$ we have $y_n \mathbf{w}^T \mathbf{x}_n < 0$ and it follows that
+
+$$
+e_n( \mathbf{w}) = \left( 1-y_n \mathbf{w}^T \mathbf{x}_n \right)^2 \geq \left(1 - 0 \right)^2 = 1 = [\![ \text{sign}(\mathbf{w}^T\mathbf{x}_n) \neq y_n ]\!].
+$$
+
+Alternatively, when $\text{sign}(\mathbf{w}^T\mathbf{x}_n) = y_n$ we have $y_n \mathbf{w}^T \mathbf{x}_n > 0$. If $y_n \mathbf{w}^T \mathbf{x}_n \in \left( 0, 1\right)$ then
+
+$$
+e_n( \mathbf{w}) = \left( 1-y_n \mathbf{w}^T \mathbf{x}_n \right)^2 \geq \left(1 - 1 \right)^2 =  0= [\![ \text{sign}(\mathbf{w}^T\mathbf{x}_n) \neq y_n ]\!],
+$$
+
+and if $y_n \mathbf{w}^T \mathbf{x}_n \geq 1$ then
+
+$$
+e_n( \mathbf{w}) = 0 = [\![ \text{sign}(\mathbf{w}^T\mathbf{x}_n) \neq y_n ]\!].
+$$
+
+Hence, $e_n( \mathbf{w})$ is an upper bound for $[\![ \text{sign}(\mathbf{w}^T\mathbf{x}_n) = y_n ]\!]$. Using this result we can show the in sample classification error has the upper bound
+
+$$
+\begin{aligned}
+E_\text{in} &= \frac{1}{N}\sum^1_{n=1} [\![ \text{sign}(\mathbf{w}^T\mathbf{x}_n) \neq y_n ]\!] \\
+  & \leq \frac{1}{N}\sum^1_{n=1} e_n( \mathbf{w}).
+\end{aligned}
+$$
+
+### 2. (c)
+
+(2 marks)
+
+Use a similar argument as in Q1. (a). Use the fact that $y_n^2 = 1$ when rearranging gradient.
+
+## Assignment - Question 3
+
+(4 marks)
+
+```{r}
+library(magrittr)
+
+#### Helper functions ---------------------------------------------------------
+Ein_linreg <- function(X, y, w){
+  sum((y-X%*%w)^2)/length(y)
+}
+
+Ein_logreg <- function(X, y, w){
+  sum(log(1+exp(-y*X%*%w)))/length(y)
+}
+
+gEin_linreg <- function(X, y, w){
+  1:length(y) %>%
+    sapply(function(n) { -2*X[n,]*c(y[n]-X[n,]%*%w) }) %>%
+    rowMeans()
+}
+
+gEin_logreg <- function(X, y, w){
+  1:length(y) %>%
+    sapply(function(n) { -y[n]*X[n,]/c(1+exp(y[n]*w%*%X[n,])) }) %>%
+    rowMeans()
+}
+
+GD <- function(X, y, Ein, gEin, w0, eta, precision, nb_iters){
+  allw <- vector("list", nb_iters)
+  allgrad <- vector("list", nb_iters)
+  cost <- numeric(nb_iters)
+  allw[[1]] <- w0
+  t <- 1
+
+  repeat {
+    cost[t] <- Ein(X, y, allw[[t]])
+    allgrad[[t]] <- gEin(X, y, allw[[t]])
+    allw[[t+1]] <- allw[[t]] - eta*allgrad[[t]]
+    t <- t + 1
+
+    if (abs(cost[t]-cost[t-1]) < precision | t > nb_iters) { break }
+  }
+
+  list(allw = allw, cost = cost, allgrad = allgrad)
+}
+
+
+#### Linear regression --------------------------------------------------------
+set.seed(1900)
+# Function taken from Friedman et al.
+genx <- function(n,p,rho){
+  #    generate x's multivariate normal with equal corr rho
+  # Xi = b Z + Wi, and Z, Wi are independent normal.
+  # Then Var(Xi) = b^2 + 1
+  #  Cov(Xi, Xj) = b^2  and so cor(Xi, Xj) = b^2 / (1+b^2) = rho
+  z <- rnorm(n)
+  if(abs(rho) < 1){
+    beta <- sqrt(rho/(1-rho))
+    x <- matrix(rnorm(n*p), ncol=p)
+    A <- matrix(rnorm(n), nrow=n, ncol=p, byrow=F)
+    x <- beta * A + x
+  }
+  if(abs(rho)==1){ x=matrix(rnorm(n),nrow=n,ncol=p,byrow=F)}
+
+  return(x)
+}
+
+
+N <- 100
+p <- 10
+rho <- 0.2
+X <- genx(N, p, rho)
+w_true <- ((-1)^(1:p))*exp(-2*((1:p)-1)/20)
+eps <- rnorm(N)
+k <- 3
+y <- X %*% w_true + k * eps
+
+res <- GD(X, y, Ein_linreg, gEin_linreg, rep(0, p), 0.01, 0.0001, 100)
+plot(res$cost)
+
+print(w_true)
+print(unlist(tail(res$allw, 1)))
+
+data <- data.frame(X)
+data$y <- y
+print(as.numeric(coef(lm(y ~ . - 1, data))))
+
+
+#### Logistic regression --------------------------------------------------------
+set.seed(1900)
+N <- 100
+l <- -5; u <- 5
+x <- seq(l, u, by = 0.1)
+w_true <- matrix(c(-3, 1, 1), ncol = 1)
+a <- -w_true[2]/w_true[3]
+b <- -w_true[1]/w_true[3]
+
+X0 <- matrix(runif(2 * N, l, u), ncol = 2)
+X <- cbind(1, X0)
+y <- sign(X %*% w_true)
+
+res <- GD(X, y, Ein_logreg, gEin_logreg, rep(0, 3), 0.05, 0.0001, 500)
+plot(res$cost)
+
+print(w_true)
+w_best <- unlist(tail(res$allw, 1))
+print(w_best)
+
+plot(c(l, u), c(u, l), type = 'n', xlab = "x1", ylab = "x2")
+lines(x, a*x +b)
+points(X0, col = ifelse(y == 1, "red", "blue"))
+
+a_best <- -w_best[2]/w_best[3]
+b_best <- -w_best[1]/w_best[3]
+lines(x, a_best*x + b_best, col = "red")
+```
+
